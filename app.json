@@ -2,7 +2,6 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/register_form",
     "pages/register_form/register_form"
   ],
   "window": {
@@ -10,6 +9,9 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
+  },
+  "usingComponents": {
+
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -42,6 +42,9 @@ Page({
         }
       })
     }
+    // wx.redirectTo({
+    //   url: '../register_form/register_form'
+    // })
   },
   getUserInfo: function(e) {
     console.log(e)

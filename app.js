@@ -9,59 +9,53 @@ App({
     // 登录
     wx.login({
       success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      }
+    })
+    //登录
+    wx.login({
+      success: res => {
         let code = res.code
         wx.getUserInfo({
           success: function(res){
-            let nickname = res.userInfo.nickName;
-            let avatarurl = res.userInfo.avatarUrl;
-            let gender = res.userInfo.gender;
+            console.log(res)
+            const {nickName, city, province, avatarUrl, gender, country} = res.userInfo
+            // let nickname = res.userInfo.nickName;
+            // let avatarurl = res.userInfo.avatarUrl;
+            // let gender = res.userInfo.gender;
+            // let country = res.userInfo.country;
             if(code){
               wx.request({
-                url: 'http://localhost:9001/api/vi/user/wxLogin',
+                url: 'http://localhost:9001/api/v1/user/wxLogin',
                 method: 'POST',
                 data: {
-                  'nickname': nickname,
-                  'avatarurl': avatarurl,
+                  'nickname': nickName,
+                  'avatarurl': avatarUrl,
                   'gender': gender,
-                  'code': code
+                  'code': code,
+                  'country': country,
+                  'city': city,
+                  'province': province
                 },
                 header: {
                   'content-type': 'application/json'
                 },
                 success: function(res){
-                  console.log('success');
+                  console.log('success')
                 }
               })
             }else{
-              console.log("获取用户登录态失败！");
+              console.log("获取用户登录态失败！")
             }
           }
         })
         
       }
     })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
 
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
-              }
-            }
-          })
-        }
-      }
-    })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    jwtToken: ''
   }
 })
