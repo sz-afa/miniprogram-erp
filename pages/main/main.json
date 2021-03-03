@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "myTabbar": "../myTabbar/myTabbar"
+  }
+}

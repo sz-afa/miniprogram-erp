@@ -2,6 +2,7 @@
   "usingComponents": {
     "van-button": "../../dist/button/index",
     "van-cell-group": "../../dist/cell-group/index",
-    "van-field": "../../dist/field/index"
+    "van-field": "../../dist/field/index",
+    "van-toast": "../../dist/toast/index"
   }
 }

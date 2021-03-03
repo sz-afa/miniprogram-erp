@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/register_form/register_form"
+    "pages/register_form/register_form",
+    "pages/main/main",
+    "pages/goodManage/goodManage"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -10,8 +12,6 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
   },
-  "usingComponents": {
-
-  },
+  "usingComponents": {},
   "sitemapLocation": "sitemap.json"
 }

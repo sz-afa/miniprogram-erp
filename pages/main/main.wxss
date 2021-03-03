@@ -1,0 +1,24 @@
+/* pages/main/main.wxss */
+.blueBack{
+  width: 100vw;
+  height: 30vh;
+  border-radius: 0 0 80rpx 80rpx;
+  background-color: #5cadff;
+  color: antiquewhite;
+}
+
+.swiper1{
+  width: 100vw;
+  height: 25vh;
+  background-color: red;
+}
+.swiper2{
+  width: 100vw;
+  height: 25vh;
+  background-color: green;
+}
+.swiper3{
+  width: 100vw;
+  height: 25vh;
+  background-color: black;
+}

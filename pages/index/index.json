@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-image": "../../dist/image/index",
+    "van-button": "../../dist/button/index",
+    "van-toast": "../../dist/toast/index"
+  }
 }

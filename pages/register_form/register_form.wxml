@@ -1,3 +1,4 @@
+<van-toast id="van-toast" mask="true"/>
 <view>
   <van-cell-group>
     <van-field
@@ -18,11 +19,15 @@
       label="短信验证码"
       placeholder="请输入短信验证码"
       border="{{ false }}"
+      bind:input="checkSms"
       use-button-slot
     >
-      <van-button slot="button" size="small" disabled="{{disableSendBtn}}" type="primary"
-        >发送验证码</van-button
+      <van-button slot="button" size="small" disabled="{{disableSendBtn || msgServerBlock}}" type="primary"
+      bind:click="sendMsg" >{{btnText}}</van-button
       >
     </van-field>
   </van-cell-group>
+  <van-button type="info" bind:click="submit" disabled="{{ disableSubmitBtn }}">
+  提  交
+</van-button>
 </view>

@@ -1,0 +1,17 @@
+<!--pages/main/main.wxml-->
+<view class="blueBack">
+  <swiper indicator-dots='true'> 
+    <swiper-item>
+      <view class="swiper1">
+        
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper2"></view>
+    </swiper-item>
+    <swiper-item>
+      <view class="swiper3"></view>
+    </swiper-item>
+  </swiper> 
+</view>
+<myTabbar select='0'></myTabbar>
