@@ -40,7 +40,7 @@ Page({
     if(app.globalData.jwtToken!=''){
       console.log('有token 认证token')
       wx.request({
-        url: app.globalData.url+'api/v1/user/tokenAuth',
+        url: app.globalData.userUrl+'user/tokenAuth',
         method: 'POST',
         data: {
           'token': app.globalData.jwtToken
@@ -90,10 +90,10 @@ Page({
           success: function(res){
             console.log(res)
             const {nickName, city, province, avatarUrl, gender=1, country='China'} = res.userInfo
-            console.log('url',app.globalData.url+'api/v1/user/wxLogin')
+            console.log('url',app.globalData.userUrl+'user/wxLogin')
             if(code){
               wx.request({
-                url: app.globalData.url+'api/v1/user/wxLogin',
+                url: app.globalData.userUrl+'user/wxLogin',
                 method: 'POST',
                 data: {
                   'nickname': nickName,

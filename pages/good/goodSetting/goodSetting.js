@@ -1,11 +1,13 @@
-// pages/goodManage/goodManage.js
+// pages/goodSetting/goodSetting.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userSetting: {}
   },
 
   /**
@@ -26,7 +28,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let _setting = app.globalData.userSetting
+    this.setData({
+      userSetting: _setting
+    })
   },
 
   /**
@@ -54,7 +59,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    
   },
 
   /**
@@ -62,5 +67,14 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  hiddenZeroChange: function(){
+    let sett = this.data.userSetting
+    sett.hiddenZero = !sett.hiddenZero
+    this.setData({
+      userSetting: sett
+    })
+    app.globalData.userSetting = sett
+    wx.setStorageSync('userSetting', sett)
   }
 })

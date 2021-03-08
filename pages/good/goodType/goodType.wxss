@@ -1,0 +1,4 @@
+/* pages/good/goodType/goodType.wxss */
+#content {
+  touch-action: none;
+}

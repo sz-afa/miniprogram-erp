@@ -5,6 +5,7 @@
   border-radius: 0 0 80rpx 80rpx;
   background-color: #5cadff;
   color: antiquewhite;
+  margin-bottom: 1vh;
 }
 
 .swiper1{
@@ -21,4 +22,21 @@
   width: 100vw;
   height: 25vh;
   background-color: black;
+}
+
+.content{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.content-item{
+  width: 20vw;
+  height: 20vw;
+  padding: 1vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }

@@ -108,7 +108,7 @@ Page({
     console.log('发送验证码')
     console.log(this.data.phone)
     wx.request({
-      url: app.globalData.url+'api/v1/user/sendCode',
+      url: app.globalData.userUrl+'user/sendCode',
       method: 'POST',
       data: {
         'token': this.data.token,
@@ -160,7 +160,7 @@ Page({
   submit: function(){
     console.log("提交")
     wx.request({
-      url: app.globalData.url+'api/v1/user/addPhone',
+      url: app.globalData.userUrl+'user/addPhone',
       method: 'POST',
       data: {
         'token': this.data.token,

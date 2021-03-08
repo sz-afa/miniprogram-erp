@@ -14,4 +14,14 @@
     </swiper-item>
   </swiper> 
 </view>
+<view class="content">
+  <view class="content-item" 
+    wx:for="{{contentItem}}" 
+    wx:key="key" 
+    wx:for-index="idx" 
+    bindtap="iconClick" 
+    data-item="{{idx}}">
+    <van-icon name="{{item.icon}}" size="14vw" />{{item.text}}
+  </view>
+</view>
 <myTabbar select='0'></myTabbar>

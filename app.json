@@ -4,7 +4,10 @@
     "pages/logs/logs",
     "pages/register_form/register_form",
     "pages/main/main",
-    "pages/goodManage/goodManage"
+    "pages/good/goodManage/goodManage",
+    "pages/good/goodSetting/goodSetting",
+    "pages/good/goodAdd/goodAdd",
+    "pages/good/goodType/goodType"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -12,6 +15,22 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
   },
-  "usingComponents": {},
+  "usingComponents": {
+    "van-button": "./dist/button/index",
+    "van-icon": "./dist/icon/index",
+    "van-action-sheet": "./dist/action-sheet/index",
+    "van-search": "./dist/search/index",
+    "van-card": "./dist/card/index",
+    "van-grid": "./dist/grid/index",
+    "van-grid-item": "./dist/grid-item/index",
+    "van-dropdown-menu": "./dist/dropdown-menu/index",
+    "van-dropdown-item": "./dist/dropdown-item/index",
+    "van-switch": "./dist/switch/index",
+    "van-cell": "./dist/cell/index",
+    "van-cell-group": "./dist/cell-group/index",
+    "van-swipe-cell": "./dist/swipe-cell/index",
+    "van-dialog": "./dist/dialog/index",
+    "van-field": "./dist/field/index"
+  },
   "sitemapLocation": "sitemap.json"
 }

@@ -1,0 +1,18 @@
+<!--pages/goodSetting/goodSetting.wxml-->
+<van-cell
+is-link
+title="商品类型"
+link-type="navigateTo"
+url="/pages/good/goodType/goodType"
+/>
+
+<van-cell-group>
+  <van-cell 
+    title="隐藏零库存货品">
+    <van-switch 
+      checked="{{ userSetting.hiddenZero }}" 
+      bind:change="hiddenZeroChange"  
+      size="40rpx" />
+  </van-cell>
+
+</van-cell-group>

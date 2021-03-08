@@ -1,0 +1,42 @@
+<!--pages/goodManage/goodManage.wxml-->
+<!-- <van-action-sheet
+  show="{{ showSheet }}"
+  actions="{{ goodTypes }}"
+  bind:close="onCloseSheet"
+  bind:select="onSelectSheet"
+/> -->
+<view class="top">
+  <view class="top-content">
+    <view style="margin: 0; padding: 0; height: 6vh; width: 7em;">
+      <van-dropdown-menu class="van-dropdown-menu2" >
+        <van-dropdown-item value="{{ typeVal }}" options="{{ option1 }}" />
+      </van-dropdown-menu>
+    </view>
+    
+      <van-search 
+        value="{{ searchVal }}" 
+        placeholder="请输入搜索关键词" 
+        custom-class="searchInput"
+        bind:search="onSearch"
+        bind:clear="onClear"/>
+      <van-icon name="scan" size="6vh" bind:click="scan"/>
+  </view>
+</view>
+<view class="content">
+
+</view>
+<view class="empty"/>
+<view class="foot">
+  <van-grid clickable column-num="2" custom-class="foot-grid">
+    <van-grid-item
+      icon="setting"
+      bind:click="buttomClick"
+      data-index="0"
+    />
+    <van-grid-item
+      icon="add"
+      bind:click="buttomClick"
+      data-index="1"
+    />
+  </van-grid>
+</view>

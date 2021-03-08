@@ -31,6 +31,6 @@ Component({
           console.log(2)
           break
       }
-    },
+    }
   }
 })

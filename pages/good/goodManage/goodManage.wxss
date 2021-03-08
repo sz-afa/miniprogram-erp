@@ -1,0 +1,52 @@
+/* pages/goodManage/goodManage.wxss */
+.top{
+  background-color: white;
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.top-content{
+  width: 100%;
+  height: 6vh;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.searchInput{
+  height: 6vh;
+  width: 60vw;
+}
+
+
+.content{
+  width: 100vw;
+  height: 150vh;
+  background-color: teal;
+}
+.empty{
+  width: 100vw;
+  height: 10vh;
+}
+.foot{
+  width: 100vw;
+  height: 10vh;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+}
+.foot-grid{
+  width: 100vw;
+  height: 10vh;
+  margin: 0;
+  padding: 0;
+}
+
+.van-dropdown-menu{
+  margin: 0; padding: 0; height: 6vh !important; width: 6em !important;
+}

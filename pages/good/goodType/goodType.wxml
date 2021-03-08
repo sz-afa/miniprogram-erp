@@ -1,0 +1,35 @@
+<van-dialog 
+  id="van-dialog" 
+  show="{{dialogShow}}" 
+  use-slot
+  show-cancel-button
+  bind:cancel="closeDialog"
+  bind:confirm="confirmDialog"
+  >
+  <van-cell-group>
+    <van-field
+      value="{{goodType}}"
+      placeholder="请输入分类名"
+      label="分类名"
+      bind:change="inputChange"
+      border="{{ false }}"
+    />
+  </van-cell-group>
+</van-dialog>
+
+<van-cell title="添加" icon="add" bindtap="openDialog" clickable />
+<view id="content">
+  <van-swipe-cell 
+    right-width="{{ 120 }}" 
+    left-width="{{ 0 }}"  
+    wx:for="{{types}}"
+    >
+    <van-cell-group>
+      <van-cell title="{{item.type}}" />
+    </van-cell-group>
+    <view slot="right">
+      <van-button type="primary" bind:click="modifyType" data-id="{{item.id}}" >修改</van-button>
+      <van-button type="danger" bind:click="delType" data-id="{{item.id}}" >删除</van-button>
+    </view>
+</van-swipe-cell>
+</view>

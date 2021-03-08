@@ -1,23 +1,18 @@
-// pages/main/main.js
+// pages/good/goodAdd/goodAdd.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    contentItem: [{
-      'icon': 'shop-o',
-      'text': '商品管理'
-    },{
-      'icon': 'friends-o',
-      'text': '客户管理'
-    }]
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
   },
 
   /**
@@ -31,7 +26,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var pages = getCurrentPages();//获取页面栈
+    if (pages.length > 1) {
+    //上一个页面实例对象
+    var prePage = pages[pages.length - 2];
+    //调用上一个页面的onShow方法
+    prePage.onTest();
+    } 
   },
 
   /**
@@ -62,26 +63,10 @@ Page({
 
   },
 
-
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
 
-  },
-  iconClick: function(val){
-    let idx = val.currentTarget.dataset.item
-    switch(idx){
-      case 0:
-        wx.navigateTo({
-          url: '../good/goodManage/goodManage'
-        })
-        break
-      case 1:
-        console.log('客户管理')
-        break
-    }
   }
-  
-  
 })

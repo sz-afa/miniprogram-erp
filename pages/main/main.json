@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "myTabbar": "../myTabbar/myTabbar"
+    "myTabbar": "../myTabbar/myTabbar",
+    "van-icon": "../../dist/icon/index"
   }
 }
