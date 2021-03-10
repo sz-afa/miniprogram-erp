@@ -1,0 +1,4 @@
+/* pages/good/goodAdd/goodAdd.wxss */
+.van-dropdown-menu2{
+  margin: 0; padding: 0; height: 24px !important;
+}

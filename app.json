@@ -6,7 +6,7 @@
     "pages/main/main",
     "pages/good/goodManage/goodManage",
     "pages/good/goodSetting/goodSetting",
-    "pages/good/goodAdd/goodAdd",
+    "pages/good/goodForm/goodForm",
     "pages/good/goodType/goodType"
   ],
   "window": {
@@ -30,7 +30,12 @@
     "van-cell-group": "./dist/cell-group/index",
     "van-swipe-cell": "./dist/swipe-cell/index",
     "van-dialog": "./dist/dialog/index",
-    "van-field": "./dist/field/index"
+    "van-field": "./dist/field/index",
+    "van-toast": "./dist/toast/index",
+    "van-row": "./dist/row/index",
+    "van-col": "./dist/col/index",
+    "van-popup": "./dist/popup/index",
+    "van-picker": "./dist/picker/index"
   },
   "sitemapLocation": "sitemap.json"
 }

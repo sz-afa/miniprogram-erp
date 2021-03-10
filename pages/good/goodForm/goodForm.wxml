@@ -1,0 +1,90 @@
+<!--pages/good/goodAdd/goodAdd.wxml-->
+<van-cell-group title="商品信息">
+  <van-field
+    value="{{ goodInfo.name }}"
+    placeholder="最多30字符"
+    clearable
+    maxlength="30"
+    border="{{ false }}"
+    bind:change="dataChange"
+    data-idx="1"
+    label="货品名称"
+  />
+  <van-field
+    value="{{ goodInfo.code }}"
+    readonly="true"
+    maxlength="30"
+    border="{{ false }}"
+    bind:change="dataChange"
+    data-idx="2"
+    label="条形码"
+    use-button-slot
+  >
+    <van-icon 
+      slot="button" 
+      name="replay"  
+      size="40rpx" 
+      custom-style="margin-left:10rpx;" 
+      bind:click="codeBtnClick"
+      data-action="get"/>
+    <van-icon slot="button"
+      name="scan" 
+      size="40rpx" 
+      custom-style="margin-left:10rpx;" 
+      bind:click="codeBtnClick" 
+      data-action="scan"/>
+  </van-field>
+  <van-cell title="商品类别" is-link bind:click="showPopup" value="{{selectedGoodTypeText}}" />
+</van-cell-group>
+
+<van-cell-group title="价格">
+  <van-field
+    label="采购价(元)"
+    input-align="right"
+    value="{{ priceCols[0] }}"
+    placeholder="单位元"
+    border="{{ false }}"
+    bind:change="priceChange"
+    data-idx="0"
+    right-icon="../../../img/rmb.png"
+  />
+  <van-field
+    label="批发价(元)"
+    input-align="right"
+    value="{{ priceCols[1] }}"
+    placeholder="单位元"
+    border="{{ false }}"
+    bind:change="priceChange"
+    data-idx="1"
+    right-icon="../../../img/rmb.png"
+  />
+  <van-field
+    label="零售价(元)"
+    input-align="right"
+    value="{{ priceCols[2] }}"
+    placeholder="单位元"
+    border="{{ false }}"
+    bind:change="priceChange"
+    data-idx="2"
+    right-icon="../../../img/rmb.png"
+  />
+</van-cell-group>
+
+<van-cell-group title="库存">
+  
+</van-cell-group>
+
+
+<van-popup 
+  show="{{showPopup}}" 
+  position="bottom" 
+  bind:close="popupClose"
+  close-on-click-overlay="true">
+  <van-picker   
+    columns="{{ goodTypeColums }}" 
+    bind:change="pickerChange" 
+    default-index="{{ 0 }}"
+    title="商品分类"
+    bind:confirm="pickerConfirm" 
+    loading="{{loading}}" />
+</van-popup>

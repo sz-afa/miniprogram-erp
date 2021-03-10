@@ -11,18 +11,22 @@ Page({
     type: '全部',
     searchVal: '',
     showSheet: false,
-    option1: [
-      { text: '全部', value: 0 },
-      { text: '未分类', value: 1 },
+    option1: [],
+    defaultOpt: [        
+      { text: '全部', value: -1 },
+      { text: '未分类', value: 0 }
     ],
-    typeVal: 0,
+    typeVal: -1,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('load')
+    console.log('g onLoad')
+    this.setData({
+      option1: this.data.defaultOpt
+    })
   },
 
   /**
@@ -41,6 +45,38 @@ Page({
       userSetting: _setting
     })
     console.log('显示了 --用户设置:',_setting)
+
+    var _this = this
+    wx.request({
+      url: app.globalData.goodUrl+'good/getAllGoodType',
+      method: 'GET',
+      header: {
+          'content-type': 'application/json',
+          'token': app.globalData.jwtToken,
+      },
+      success: function(res){
+        console.log('res',res)
+        let arry = []
+        if(res.statusCode == 200){
+          let data = res.data.data
+          for(let val of data){
+            let {id,type} = val
+            arry.push({
+              text: type,
+              value: id
+            })
+          }
+          arry = _this.data.defaultOpt.concat(arry)
+          _this.setData({
+            option1: arry,
+            typeVal: -1
+          })
+        }
+
+      }
+    })
+
+
   },
 
   /**
@@ -121,7 +157,7 @@ Page({
       })
     }else if(index == 1){
       wx.navigateTo({
-        url: '../goodAdd/goodAdd'
+        url: '../goodForm/goodForm?action=add'
       })
     }
   }

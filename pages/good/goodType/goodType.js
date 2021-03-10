@@ -1,6 +1,6 @@
 // pages/good/goodType/goodType.js
 const app = getApp()
-
+import Toast from '../../../dist/toast/toast';
 Page({
 
   /**
@@ -10,7 +10,9 @@ Page({
     url: '',
     types: [],
     dialogShow: false,
-    goodType: ''
+    goodType: '',
+    isUpdate: false,
+    updateId: 0
   },
 
   /**
@@ -21,21 +23,29 @@ Page({
       url: app.globalData.goodUrl
     })
     var _this = this
+    var _toast = Toast
+    Toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+      duration: 0,
+      loadingType: 'spinner',
+      mask: true
+    });
+
     wx.request({
       url: this.data.url+'good/getAllGoodType',
       method: 'GET',
-      data: {
-  
-      },
       header: {
           'content-type': 'application/json',
           'token': app.globalData.jwtToken,
       },
+      
       success: function(res){
         console.log('res',res)
         if(res.statusCode == 200){
           let data = res.data.data
           console.log('data',data)
+          _toast.clear();
           _this.setData({
             types: data
           })
@@ -114,10 +124,18 @@ Page({
   modifyType: function(val){
     let typeId = val.currentTarget.dataset.id
     console.log('modify id',typeId)
+    let idx = val.currentTarget.dataset.idx
+    let vall = this.data.types[idx].type
+    this.setData({
+      dialogShow: true,
+      isUpdate: true,
+      goodType: vall,
+      updateId: typeId
+    })
   },
   openDialog: function(){
     this.setData({
-      dialogShow: true
+      dialogShow: true,
     })
   },
   inputChange: function(event){
@@ -136,27 +154,54 @@ Page({
     var _this = this
     console.log(this.data.goodType)
 
-    wx.request({
-      url: this.data.url+'good/addGoodType',
-      method: 'POST',
-      data: {
-        type: _this.data.goodType
-      },
-      header: {
-          'content-type': 'application/json',
-          'token': app.globalData.jwtToken,
-      },
-      success: function(res){
-        if(res.data.code == 1){
-          console.log('添加成功')
-          _this.onLoad()
+    if(_this.data.isUpdate){
+      console.log('update')
+      
+      wx.request({
+        url: this.data.url+'good/updateGoodType',
+        method: 'POST',
+        data: {
+          id: _this.data.updateId,
+          type: _this.data.goodType
+        },
+        header: {
+            'content-type': 'application/json',
+            'token': app.globalData.jwtToken,
+        },
+        success: function(res){
+          if(res.data.code == 1){
+            console.log('更新成功')
+            _this.onLoad()
+          }
         }
-      }
-    })
+      })
+  
+    }else{
+      wx.request({
+        url: this.data.url+'good/addGoodType',
+        method: 'POST',
+        data: {
+          type: _this.data.goodType
+        },
+        header: {
+            'content-type': 'application/json',
+            'token': app.globalData.jwtToken,
+        },
+        success: function(res){
+          if(res.data.code == 1){
+            console.log('添加成功')
+            _this.onLoad()
+          }
+        }
+      })
+  
+    }
+
 
     this.setData({
       dialogShow: false,
-      goodType: ''
+      goodType: '',
+      isUpdate: false
     })
 
 

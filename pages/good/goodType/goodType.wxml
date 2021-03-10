@@ -1,3 +1,4 @@
+<van-toast id="van-toast"/>
 <van-dialog 
   id="van-dialog" 
   show="{{dialogShow}}" 
@@ -23,12 +24,13 @@
     right-width="{{ 120 }}" 
     left-width="{{ 0 }}"  
     wx:for="{{types}}"
+    wx:for-index="idx" 
     >
     <van-cell-group>
       <van-cell title="{{item.type}}" />
     </van-cell-group>
     <view slot="right">
-      <van-button type="primary" bind:click="modifyType" data-id="{{item.id}}" >修改</van-button>
+      <van-button type="primary" bind:click="modifyType" data-id="{{item.id}}" data-idx="{{idx}}" >修改</van-button>
       <van-button type="danger" bind:click="delType" data-id="{{item.id}}" >删除</van-button>
     </view>
 </van-swipe-cell>
