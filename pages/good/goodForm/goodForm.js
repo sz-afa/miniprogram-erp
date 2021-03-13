@@ -1,6 +1,8 @@
 // pages/good/goodAdd/goodAdd.js
 const app = getApp()
 
+import Notify from '../../../dist/notify/notify';
+
 Page({
 
   /**
@@ -8,8 +10,9 @@ Page({
    */
   data: {
     action: '',
-    // {name,code,type,pPrice,}
+    // {name,code,typeId,pPrice,stock}
     goodInfo: {},
+    info: '',//留言
     showPopup: false,
     goodTypeColums: [],
     goodTypeIdColums: [],
@@ -29,14 +32,8 @@ Page({
     this.setData({
       action: action,
       goodInfo: goodInfo,  //载入修改的原始数据
-      
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+    
     var _this = this
     wx.request({
       url: app.globalData.goodUrl+'good/getAllGoodType',
@@ -68,6 +65,14 @@ Page({
       }
     })
   
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
 
   /**
@@ -171,12 +176,16 @@ Page({
   priceChange: function(val){
     let {idx} = val.currentTarget.dataset
     let reg = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/
-    let isMoney = reg.test(val.detail)
+    let reg2 = /^[0-9]*.$/
+    let _value = val.detail
+    let isMoney = reg.test(_value)
     let tmpPriceError = this.data.priceError
     let tmpPriceCols = this.data.priceCols
-    if(isMoney || val.detail==''){
+
+    if(isMoney || _value==''|| reg2.test(_value)){
+      
       tmpPriceError[idx] = false
-      tmpPriceCols[idx] = val.detail
+      tmpPriceCols[idx] = _value+''
     }else{
       tmpPriceError[idx] = true
       tmpPriceCols[idx] = ''
@@ -186,8 +195,74 @@ Page({
       priceCols: tmpPriceCols
     })
 
-    console.log(tmpPriceError)
-    console.log(tmpPriceCols)
+
+  },
+  stockChange: function(val){
+    let reg = /^[1-9]\d*$/
+    let value = val.detail
+    if( reg.test(value) ){
+    console.log('stockChange',value)
+
+      let _goodInfo = this.data.goodInfo
+      _goodInfo.stock = value
+    console.log('stockChange',_goodInfo)
+
+      this.setData({
+        goodInfo: _goodInfo
+      })
+    }else{
+      let _goodInfo = this.data.goodInfo
+      _goodInfo.stock = ''
+      this.setData({
+        goodInfo: _goodInfo
+      })
+    }
+  },
+  infoChange: function(val){
+    let _goodInfo = this.data.info
+    _goodInfo = val.detail
+    this.setData({
+      info: _goodInfo
+    })
+  },
+  submit: function(){
+    let _goodInfo = this.data.goodInfo
+    if(! _goodInfo.code ||  _goodInfo.code == ''){
+      Notify({ type: 'danger', message: '条形码不能为空,若无请随机生成' });
+      return 
+    }
+    if(!_goodInfo.name || _goodInfo.name ==''){
+      Notify({ type: 'danger', message: '货品名称不能为空' });
+      return 
+    }
+
+    _goodInfo.typeId = this.data.goodTypeIdColums[this.data.selectedGoodTypeIdx]
+    _goodInfo.prchsPrice = this.data.priceCols[0] 
+    _goodInfo.whlslPrice = this.data.priceCols[1] 
+    _goodInfo.salePrice = this.data.priceCols[2]
+    _goodInfo.stock = this.data.goodInfo.stock | 0
+    _goodInfo.info = this.data.info=='' ? '无' : this.data.info
+
+    this.setData({
+      goodInfo: _goodInfo,
+    })
+    let successMsg = '更新成功'
+    if( this.data.action == 'add' )
+        successMsg = '添加成功'
+    wx.request({
+      url: app.globalData.goodUrl+'good/addGood',
+      method: 'POST',
+      data: _goodInfo,
+      header: {
+          'content-type': 'application/json',
+          'token': app.globalData.jwtToken,
+      },
+      success: function(res){
+        if(res.data.code == 1){
+          console.log(successMsg)
+        }
+      }
+    })
 
   }
 })

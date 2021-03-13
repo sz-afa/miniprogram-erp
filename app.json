@@ -35,7 +35,11 @@
     "van-row": "./dist/row/index",
     "van-col": "./dist/col/index",
     "van-popup": "./dist/popup/index",
-    "van-picker": "./dist/picker/index"
+    "van-picker": "./dist/picker/index",
+    "van-notify": "./dist/notify/index",
+    "van-divider": "./dist/divider/index",
+    "van-empty": "./dist/empty/index"
+
   },
   "sitemapLocation": "sitemap.json"
 }

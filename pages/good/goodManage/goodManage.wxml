@@ -1,42 +1,39 @@
 <!--pages/goodManage/goodManage.wxml-->
-<!-- <van-action-sheet
-  show="{{ showSheet }}"
-  actions="{{ goodTypes }}"
-  bind:close="onCloseSheet"
-  bind:select="onSelectSheet"
-/> -->
+
 <view class="top">
   <view class="top-content">
     <view style="margin: 0; padding: 0; height: 6vh; width: 7em;">
-      <van-dropdown-menu class="van-dropdown-menu2" >
-        <van-dropdown-item value="{{ typeVal }}" options="{{ option1 }}" />
+      <van-dropdown-menu class="van-dropdown-menu2">
+        <van-dropdown-item value="{{ typeVal }}" options="{{ option1 }}" bind:change="dropdownMenuChange" />
       </van-dropdown-menu>
     </view>
-    
-      <van-search 
-        value="{{ searchVal }}" 
-        placeholder="请输入搜索关键词" 
-        custom-class="searchInput"
-        bind:search="onSearch"
-        bind:clear="onClear"/>
-      <van-icon name="scan" size="6vh" bind:click="scan"/>
+
+    <van-search value="{{ searchVal }}" placeholder="请输入搜索关键词" custom-class="searchInput" bind:search="onSearch"
+      bind:clear="onClear" />
+    <van-icon name="scan" size="6vh" bind:click="scan" />
   </view>
 </view>
-<view class="content">
+<view>
 
+  <view hidden="{{haveGood}}">
+    <van-empty description="没有商品" />
+  </view>
+  <van-card 
+    wx:for="{{showGoodsData}}"
+    num="{{item.stock}}" tag="{{item.typeText}}" price="{{item.prchsPrice}}" desc="{{item.info}}" 
+    title="{{item.code}}\t\t{{item.name}}" thumb="https://img01.yzcdn.cn/vant/ipad.jpeg">
+    <view slot="footer">
+      <van-button size="mini" type="info">修改</van-button>
+      <van-button size="mini" type="danger" bind:click="delGoodById" data-id="{{item.id}}" >删除</van-button>
+    </view>
+  </van-card>
 </view>
-<view class="empty"/>
+<van-toast id="van-toast"/>
+
+<view class="empty" />
 <view class="foot">
   <van-grid clickable column-num="2" custom-class="foot-grid">
-    <van-grid-item
-      icon="setting"
-      bind:click="buttomClick"
-      data-index="0"
-    />
-    <van-grid-item
-      icon="add"
-      bind:click="buttomClick"
-      data-index="1"
-    />
+    <van-grid-item icon="setting" bind:click="buttomClick" data-index="0" />
+    <van-grid-item icon="add" bind:click="buttomClick" data-index="1" />
   </van-grid>
 </view>

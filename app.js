@@ -19,7 +19,10 @@ App({
     userInfo: null,
     jwtToken: '',
     // globalUrl:'http://192.168.31.247:9090/',
-    globalUrl:'http://192.168.50.248:9090/',
+    // globalUrl:'http://192.168.1.101:9090/',
+    // globalUrl:'http://192.168.50.233:9090/',
+    globalUrl:'http://127.0.0.1:9090/',
+
     apiVersion: 'api/v1/'
   }
 })

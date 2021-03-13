@@ -4,6 +4,7 @@
     value="{{ goodInfo.name }}"
     placeholder="最多30字符"
     clearable
+    input-align="right"
     maxlength="30"
     border="{{ false }}"
     bind:change="dataChange"
@@ -42,7 +43,7 @@
     label="采购价(元)"
     input-align="right"
     value="{{ priceCols[0] }}"
-    placeholder="单位元"
+    placeholder="小数点最多两位"
     border="{{ false }}"
     bind:change="priceChange"
     data-idx="0"
@@ -52,7 +53,7 @@
     label="批发价(元)"
     input-align="right"
     value="{{ priceCols[1] }}"
-    placeholder="单位元"
+    placeholder="小数点最多两位"
     border="{{ false }}"
     bind:change="priceChange"
     data-idx="1"
@@ -62,7 +63,7 @@
     label="零售价(元)"
     input-align="right"
     value="{{ priceCols[2] }}"
-    placeholder="单位元"
+    placeholder="小数点最多两位"
     border="{{ false }}"
     bind:change="priceChange"
     data-idx="2"
@@ -71,15 +72,39 @@
 </van-cell-group>
 
 <van-cell-group title="库存">
-  
+  <van-field
+    value="{{ goodInfo.stock }}"
+    label="库存"
+    input-align="right"
+    placeholder="请输入整数"
+    border="{{ false }}"
+    bind:change="stockChange"
+    type="number"
+  />
 </van-cell-group>
-
+<van-cell-group title="备注">
+  <van-field
+    value="{{ info }}"
+    label="留言"
+    type="string"
+    maxlength="18"
+    input-align="right"
+    placeholder="最多18个字"
+    border="{{ false }}"
+    bind:change="infoChange"
+  />
+</van-cell-group>
+<van-divider />
+<van-cell-group>
+  <van-button type="info" bind:click="submit" style="float:right;">提交</van-button>
+</van-cell-group>
 
 <van-popup 
   show="{{showPopup}}" 
   position="bottom" 
   bind:close="popupClose"
-  close-on-click-overlay="true">
+  close-on-click-overlay="true" >
+
   <van-picker   
     columns="{{ goodTypeColums }}" 
     bind:change="pickerChange" 
@@ -88,3 +113,5 @@
     bind:confirm="pickerConfirm" 
     loading="{{loading}}" />
 </van-popup>
+
+<van-notify id="van-notify" />

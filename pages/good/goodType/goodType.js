@@ -29,7 +29,7 @@ Page({
       forbidClick: true,
       duration: 0,
       loadingType: 'spinner',
-      mask: true
+      mask: false
     });
 
     wx.request({
