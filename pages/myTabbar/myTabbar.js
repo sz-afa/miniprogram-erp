@@ -19,18 +19,30 @@ Component({
   methods: {
     onChange(event) {
       // event.detail 的值为当前选中项的索引
-      this.setData({ active: event.detail });
+      
       switch(event.detail){
         case 0:
           console.log(0)
           break
         case 1:
           console.log(1)
-          break
+          this.triggerEvent('popupShow')
+          return
         case 2:
           console.log(2)
+          wx.navigateTo({
+            url: '../setting/setting'
+        })
+          break
+        case 3:
+          console.log(3)
+          break
+        case 4:
+          console.log(4)
           break
       }
+    
+      this.setData({ active: event.detail });
     }
   }
 })

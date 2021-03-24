@@ -95,8 +95,16 @@
   />
 </van-cell-group>
 <van-divider />
-<van-cell-group>
-  <van-button type="info" bind:click="submit" style="float:right;">提交</van-button>
+<van-cell-group style="float: right">
+  <van-uploader
+    file-list="{{ fileList }}"
+    bind:after-read="afterRead" 
+    bind:delete="delImg"
+    accept="image"
+    max-count="1"
+    deletable="true" />
+    <van-button type="info" bind:click="submit" >提交</van-button>
+    
 </van-cell-group>
 
 <van-popup 

@@ -1,13 +1,20 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
     "pages/register_form/register_form",
     "pages/main/main",
     "pages/good/goodManage/goodManage",
     "pages/good/goodSetting/goodSetting",
     "pages/good/goodForm/goodForm",
-    "pages/good/goodType/goodType"
+    "pages/good/goodType/goodType",
+    "pages/setting/setting",
+    "pages/sale/saleForm/saleForm",
+    "pages/ledger/ledger",
+    "pages/supplier/supplierManage/supplierManage",
+    "pages/customer/customer/customer",
+    "pages/ledger_add/ledger_add",
+    "pages/customer/customer_add/customer_add",
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -38,8 +45,9 @@
     "van-picker": "./dist/picker/index",
     "van-notify": "./dist/notify/index",
     "van-divider": "./dist/divider/index",
-    "van-empty": "./dist/empty/index"
-
+    "van-empty": "./dist/empty/index",
+    "van-uploader": "./dist/uploader/index",
+    "van-calendar": "./dist/calendar/index"
   },
   "sitemapLocation": "sitemap.json"
 }

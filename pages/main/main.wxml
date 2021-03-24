@@ -24,4 +24,24 @@
     <van-icon name="{{item.icon}}" size="14vw" />{{item.text}}
   </view>
 </view>
-<myTabbar select='0'></myTabbar>
+<van-popup
+  show="{{popupShow}}"
+  position="bottom"
+  custom-style="height: 50%;"
+  bind:close="popupClose"
+  closeable
+>
+  <view class="popContent" >
+    <view class="popContent-item"><van-icon name="shop-o" />销售开单</view>
+    <view class="popContent-item2" >
+      <van-button round  plain type="info" bindtap="btnClick" data-idx="0">出货</van-button>
+      <van-button round  plain type="info">收款</van-button>
+    </view>
+    <view class="popContent-item"><van-icon name="shop-o" />采购开单</view>
+    <view class="popContent-item2">
+      <van-button round  plain type="info" bindtap="btnClick" data-idx="5">进货</van-button>
+      <van-button round  plain type="info">付款</van-button>
+    </view>
+  </view>
+</van-popup>
+<myTabbar select='0' bind:popupShow="popupShow"></myTabbar>

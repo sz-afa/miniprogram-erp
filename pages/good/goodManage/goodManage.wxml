@@ -1,4 +1,3 @@
-<!--pages/goodManage/goodManage.wxml-->
 
 <view class="top">
   <view class="top-content">
@@ -20,12 +19,18 @@
   </view>
   <van-card 
     wx:for="{{showGoodsData}}"
-    num="{{item.stock}}" tag="{{item.typeText}}" price="{{item.prchsPrice}}" desc="{{item.info}}" 
-    title="{{item.code}}\t\t{{item.name}}" thumb="https://img01.yzcdn.cn/vant/ipad.jpeg">
+    wx:for-index="idx" 
+    num="{{item.stock}}" tag="{{item.typeText}}" price="{{item.prchsPrice}}" 
+    desc="备注:{{item.info}}" 
+    title="{{item.code}}\t\t{{item.name}}" 
+    thumb="{{imgUrlPre}}{{item.img}}"
+    thumb-mode="contain" >
+    <view slot="price-top" style="color: red;">采购价</view>
     <view slot="footer">
-      <van-button size="mini" type="info">修改</van-button>
+      <van-button size="mini" type="info" bind:click="editGood" data-idx="{{idx}}">修改</van-button>
       <van-button size="mini" type="danger" bind:click="delGoodById" data-id="{{item.id}}" >删除</van-button>
     </view>
+    <view slot="bottom" style="color: #1989FA">零售价{{item.salePrice}}\t批发价{{item.whlslPrice}}</view>
   </van-card>
 </view>
 <van-toast id="van-toast"/>

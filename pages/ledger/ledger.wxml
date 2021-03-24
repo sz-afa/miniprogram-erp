@@ -1,0 +1,68 @@
+<!--pages/ledger/ledger.wxml-->
+
+<van-toast id="van-toast" />
+
+<view class="containers">
+  <!-- 资产总和显示部分-start -->
+  <view class="containers-top">
+    <view class="top-body">
+      <view class="body-num">
+        {{ count }}
+      </view>
+      <view class="body-text">
+        {{ text }}
+      </view>
+    </view>
+  </view>
+  <!-- end -->
+  <!-- 各类支付存款方式 -->
+  <view class="containers-bottom">
+    <view class="bottom-body">
+      <view class="bodys body-1">
+        <van-cell
+          icon="after-sale" 
+          is-link
+          title="现金(默认账户)"
+          value="{{ obj.cash }}"
+          border="false"
+          size="50px"
+          custom-class="customclass"
+          url="/pages/ledger_add/ledger_add?field=1&id={{obj.id}}"
+        />
+      </view>
+      <view class="bodys body-2">
+        <van-cell 
+          value="{{ obj.wechat }}"
+          icon="after-sale"
+          is-link
+          title="微信"
+          border="false"
+          url="/pages/ledger_add/ledger_add?field=0&id={{obj.id}}"
+          custom-class="customclass"
+        />
+      </view>
+      <view class="bodys body-3">
+        <van-cell 
+          value="{{ obj.alipay }}"
+          icon="after-sale"
+          is-link
+          title="支付宝"
+          url="/pages/ledger_add/ledger_add?field=2&id={{obj.id}}"
+          custom-class="customclass"
+        />
+      </view>
+      <view class="bodys body-4">
+        <van-cell 
+          value="{{ obj.bank }}"
+          icon="after-sale"
+          is-link
+          title="银行存款"
+          url="/pages/ledger_add/ledger_add?field=3&id={{obj.id}}"
+          custom-class="customclass"
+          value-class="valueclass"
+          title-class="titleclass"
+        />
+      </view>
+    </view>
+  </view>
+</view>

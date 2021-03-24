@@ -1,0 +1,74 @@
+<!--pages/customer/customer.wxml-->
+<view class="headers">
+  <van-cell
+    title="客户"
+    is-link
+    arrow-direction="down"
+    bind:click="onShowCIF"
+    custom-class="custom-class"
+    title-class="all-class"
+  >
+    <van-action-sheet 
+      title="客户"
+      show="{{showdropmenu_cif }}"
+      actions="{{ ObjectCIF }}"
+      bind:close="onClose"
+      bind:select="onSelect"
+    />
+  </van-cell>  
+    <van-search
+      value= "{{ value }}"
+      use-action-slot
+      placeholder="输入供应商/关键字"
+      bind:change="onchange"
+      clearable="true"
+    >
+      <view class="headers-item" slot="action" bind:tap="onSearch">
+          欠款<van-icon name="{{ downanup }}" size="0.8rem" custom-style="{{ dwonanupflg ?'position:relative;top: 0.15rem;font-weight: 600;padding-right: 2px;transform:rotateZ(180deg)':'position:relative;top: 0.15rem;font-weight: 600;padding-right: 2px' }}"/>
+      </view>
+    </van-search>
+</view>
+<!-- 卡片信息-start -->
+  <block wx:for="{{ objs }}" wx:key="index">
+        <view class="container" bindtap="edit" data-idx="{{index}}">
+          <!-- 卡片上部分信息-start -->
+            <view class="headclass">
+                  <!-- 左边的部分 -->
+                  <view class="headleft">
+                    <view class="headleft-item">{{item.name + '('+getTypes[item.type]+')' }}</view>
+                  </view>
+                  <!-- 右边的部分 -->
+                  <view class="headright">
+                    <vant-button class="headright-item" bind:tap="#">出货</vant-button>
+                  </view>
+            </view>
+          <!-- end -->
+
+            <!-- 分割线-start -->
+            <view class="hrclass"></view>
+            <!-- end -->
+
+          <!-- 卡片下部分信息-start -->
+          <view class="footer">
+            <view class="footer-left">
+                  <view>{{ "联系人" + ":" + item.liaison }}</view>
+                  <view class="left-item">
+                    <view class="item1">{{ "应付欠款" + " : "  + item.value2.value }}</view>
+                    <vant-button class="item2" bind:tap="getMoney">收款</vant-button>
+                  </view>
+            </view>
+            <view class="footer-right">
+              <view>{{ "电话" + ":" + item.phone}}<van-icon bind:tap="phone" class="right-item" name="phone"></van-icon> </view>  
+            </view>
+          </view>
+          <!-- end -->
+        </view>
+  </block>
+<view class="empty"></view>
+<!-- end -->
+<!-- 底部按钮-start -->
+    <view class="footers">
+      <van-button class="footers-items" custom-class="footers-item-primary" bind:tap="addCIF">客户配置</van-button> 
+       <van-button class="footers-items" custom-class="footers-item" bind:tap="addCIF">新增客户</van-button> 
+    </view>
+<!-- end -->

@@ -1,0 +1,84 @@
+<!--pages/detailshap/detailshap.wxml-->
+<view class="containers">
+  <view class="cell cell-1">
+    <!-- 供应商名称 -->
+    <van-field
+      value="{{ obj.name }}"
+      clearable="true"
+      placeholder=""
+      border="true"
+      required="true"
+      label="供应商名称"
+      input-align="right"
+      custom-style="border-radius: 10px"
+      bind:change="onChange"
+      data-idx="0"
+    />
+  </view>
+  <view class="cell cell-2">
+    <!-- 联系人 -->
+    <van-field 
+      value="{{ obj.liaison }}"
+      clearable="true"
+      placeholder=""
+      border="true"
+      required="true"
+      label="联系人"
+      input-align="right"
+      custom-style="border-radius: 10px;"
+      bind:change="onChange"
+      data-idx="1"
+    />
+    <!-- 分割线 -->
+    <view class="hrclass"></view>
+    <!-- 手机 -->
+    <van-field 
+      value="{{ obj.phone }}"
+      clearable="true"
+      placeholder=""
+      border="true"
+      required="true"
+      label="手机"
+      input-align="right"
+      custom-style="border-radius: 10px;"
+      bind:change="onChange"
+      data-idx="2"
+    />
+    <!-- 分割线 -->
+    <view class="hrclass"></view>
+
+    <!-- 分割线 -->
+    <view class="hrclass"></view>
+    <!-- 经营地址 -->
+    <van-field 
+      value="{{ obj.addr }}"
+      clearable="true"
+      placeholder=""
+      required="true"
+      label="经营地址"
+      input-align="right"
+      custom-style="border-radius: 10px;"
+      bind:change="onChange"
+      data-idx="3"
+    />
+  </view>
+  <view class="cell cell-3">
+    <van-field 
+      value="{{ obj.info }}"
+      clearable="true"
+      placeholder=""
+      required="true"
+      label="备注"
+      bind:change="onChange"
+      data-idx="4"
+      input-align="right"
+      custom-style="border-radius: 10px"
+    />
+  </view>
+</view>
+<view class="footer">
+  <view class="footer-button">
+      <van-button type="info" bind:click="submit">保存</van-button>
+      <van-button wx:if="{{isUpdate}}" type="danger" bind:click="del">删除</van-button>
+  </view>
+</view>

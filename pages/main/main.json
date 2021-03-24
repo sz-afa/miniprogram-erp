@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "主页",
   "usingComponents": {
     "myTabbar": "../myTabbar/myTabbar",
     "van-icon": "../../dist/icon/index"

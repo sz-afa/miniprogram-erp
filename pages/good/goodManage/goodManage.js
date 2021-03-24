@@ -20,7 +20,8 @@ Page({
     ],
     typeVal: -1,
     goodsData: [],
-    showGoodsData: []
+    showGoodsData: [],
+    imgUrlPre: ''
   },
 
 
@@ -29,7 +30,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      option1: this.data.defaultOpt
+      option1: this.data.defaultOpt,
+      imgUrlPre: app.globalData.goodUrl + 'good/image/download?filename='
     })
 
     let _setting = app.globalData.userSetting
@@ -311,6 +313,13 @@ Page({
     }
     this.setData({
       showGoodsData: _showGoodsData2
+    })
+  },
+  editGood(val){
+    let {idx} = val.currentTarget.dataset
+    let _good = this.data.showGoodsData[idx]
+    wx.navigateTo({
+      url: '../goodForm/goodForm?action=edit&goodInfo='+JSON.stringify(_good)
     })
   }
 })

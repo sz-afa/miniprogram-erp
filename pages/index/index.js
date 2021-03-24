@@ -11,6 +11,12 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   onLoad: function () {
+
+    wx.navigateTo({
+      url: '../order/order?action=purchases'
+    })
+    
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -132,7 +138,6 @@ Page({
             }
           }
         })
-        
       }
     })
   }

@@ -1,0 +1,31 @@
+<van-cell-group>
+  <van-cell 
+  title="选择日期" 
+  value="{{ obj.data }}" 
+  is-link  
+  bind:click="calendarDisplay" 
+  icon="clock-o"/>
+  <van-cell title="客户" is-link />
+</van-cell-group>
+<van-divider />
+<van-cell-group>
+  <view class="goodHead">
+    <view class="goodHead-left">
+      选择货品
+    </view>
+    <view class="goodHead-right">
+      总计金额
+    </view>
+  </view>
+  <view class="goodsView">
+  
+  </view>
+  <view class="goodFoot">
+    
+  </view>
+</van-cell-group>
+<van-calendar 
+  show="{{ calendarShow }}" 
+  bind:close="calendarClose" 
+  min-date="{{ minDate }}"
+  bind:confirm="calendarConfirm" />

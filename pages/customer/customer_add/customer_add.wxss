@@ -1,0 +1,53 @@
+/* pages/customer-add/customer_add.wxss */
+.containers{
+  width: 96%;
+  margin: 3px auto;
+} 
+.containers .cell{
+  border: 1px solid #e2dfdf;
+  border-radius: 10px;
+  position: relative;
+  top: 15px;
+}
+.containers .hrclass{
+  background: rgba(236, 240, 247, 1);
+  height: 1px;
+  width: 96%;
+  margin: 0 auto;
+}
+.containers .cell-1{
+  top: 3px;
+}
+.containers .cell-1 .custom-class{
+  border-radius: 10px;
+  color: 646566;
+}
+.containers .cell-2 .text-class{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55px;
+}
+.containers .cell-2 .textarea{
+  width: 90%;
+  background-color: #ecf1f5;
+  height: 70% !important;
+  padding: 4px 4px;
+  font-size: 14px;
+}
+.containers .cell-3{
+  top: 30px;
+}
+.footer{
+    position: absolute;
+    bottom: 0px;
+    height: 50px;
+    width: 100%;
+    display: flex;
+}
+.footer-button{
+  display: inline-block;
+  margin: 0 auto;
+  line-height: 50px;
+  color: #1898FA;
+}

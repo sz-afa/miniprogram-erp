@@ -20,7 +20,8 @@ Page({
     selectedGoodTypeText: '未分类',
     loading: true,
     priceError: [false, false, false],
-    priceCols:['', '', '']
+    priceCols:['', '', ''],
+    fileList: [],
   },
 
   /**
@@ -61,6 +62,7 @@ Page({
             loading: false
           })
           console.log('goodTypeIdColums : ', _this.data.goodTypeIdColums)
+          _this.setSelectedGoodTypeIdx()
         }
       }
     })
@@ -79,7 +81,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(this.data.action == 'edit'){
+      console.log('edit')
+      let obj = JSON.parse(this.data.goodInfo)
+      console.log(obj)
+      let _priceCols=[obj.prchsPrice,obj.whlslPrice, obj.salePrice]
+      let _typeId = obj.typeId
 
+      let _fileList = []
+      if(obj.img != 'default.png'){
+        _fileList.push({
+          thumb: app.globalData.goodUrl + 'good/image/download?filename='+obj.img,
+          type: "image",
+          url: app.globalData.goodUrl + 'good/image/download?filename='+obj.img
+        })
+      }
+
+      this.setData({
+        goodInfo: obj,
+        priceCols: _priceCols,
+        info: obj.info,
+        selectedGoodTypeText: obj.typeText,
+        fileList: _fileList
+      })
+      
+      console.log('obj img:',app.globalData.goodUrl + 'good/image/download?filename='+obj.img) 
+    
+    }
   },
 
   /**
@@ -236,6 +264,10 @@ Page({
       return 
     }
 
+    if(this.data.fileList.length==0){
+      _goodInfo.img = 'default.png'
+    }
+
     _goodInfo.typeId = this.data.goodTypeIdColums[this.data.selectedGoodTypeIdx]
     _goodInfo.prchsPrice = this.data.priceCols[0] 
     _goodInfo.whlslPrice = this.data.priceCols[1] 
@@ -247,10 +279,13 @@ Page({
       goodInfo: _goodInfo,
     })
     let successMsg = '更新成功'
-    if( this.data.action == 'add' )
-        successMsg = '添加成功'
+    let _url = 'good/updateGood'
+    if( this.data.action == 'add' ){
+      successMsg = '添加成功'
+      _url = 'good/addGood'
+    }
     wx.request({
-      url: app.globalData.goodUrl+'good/addGood',
+      url: app.globalData.goodUrl+_url,
       method: 'POST',
       data: _goodInfo,
       header: {
@@ -264,5 +299,56 @@ Page({
       }
     })
 
+  },
+  setSelectedGoodTypeIdx(){
+    let _goodText = this.data.selectedGoodTypeText
+    let _index = 0
+    this.data.goodTypeColums.forEach(function(item, index){
+      if(item == _goodText){
+        _index = index
+        return
+
+      }
+
+    })
+    this.setData({
+      selectedGoodTypeIdx: _index
+    })
+  },
+  afterRead(event) {
+    var _this = this
+    const { file } = event.detail
+    console.log('afterRead' , file)
+    wx.uploadFile({
+      filePath: file.url,
+      header: {
+        'token': app.globalData.jwtToken,
+        "Content-Type": "multipart/form-data"
+      },
+      name: 'file',
+      url: app.globalData.goodUrl+'good/image/upload',
+      success(res) {
+        let _goodInfo = _this.data.goodInfo
+        _goodInfo.img = res.data
+        _this.setData({
+          goodInfo: _goodInfo
+        })
+      }
+    })
+    let arry = []
+    arry.push(file)
+    this.setData({
+      fileList: arry
+    })
+    console.log(file)
+
+  },
+  delImg(event){
+    let _goodinfo = this.data.goodInfo
+    _goodinfo.img = "default.png"
+    this.setData({
+      fileList: [],
+      goodInfo: _goodinfo
+    })
   }
 })

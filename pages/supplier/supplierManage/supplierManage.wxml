@@ -1,0 +1,63 @@
+<view class="headers">
+    <van-search
+      value= "{{ value }}"
+      use-action-slot
+      placeholder="输入供应商/关键字"
+      bind:change="onchagne"
+      clearable="true"
+    >
+          <view class="headers-item" slot="action" bind:tap="qkBtnClick">
+              欠款<van-icon name="{{ downanup }}" size="0.8rem" custom-style="{{ dwonanupflg ?'position:relative;top: 0.15rem;font-weight: 600;padding-right: 2px;transform:rotateZ(180deg)':'position:relative;top: 0.15rem;font-weight: 600;padding-right: 2px' }}"/>
+          </view>
+    </van-search>
+</view>
+<!-- 卡片信息-start -->
+  <block wx:for="{{ suppliers }}" wx:key="index">
+        <view class="container" bind:tap="updateSupp" data-id="{{item.id}}" data-idx="{{index}}">
+          <!-- 卡片上部分信息-start -->
+            <view class="headcalss">
+                  <!-- 左边的部分 -->
+                  <view class="headleft">
+                    <view class="headleft-item">{{item.name}}</view>
+                  </view>
+                  <!-- 右边的部分 -->
+                  <view class="headright">
+                    <vant-button class="headright-item" bind:tap="aaa">采购</vant-button>
+                  </view>
+            </view>
+          <!-- end -->
+
+            <!-- 分割线-start -->
+            <view class="hrclass"></view>
+            <!-- end -->
+
+          <!-- 卡片下部分信息-start -->
+          <view class="footer">
+            <view class="footer-left">
+                  <view>{{ "联系人" + ":" + item.liaison }}</view>
+                  <view class="left-item">
+                    <view class="item1">{{ "应付欠款" + " : "  + index }}</view>
+                    <vant-button class="item2" bind:tap="aaa">付款</vant-button>
+                  </view>
+            </view>
+            <view class="footer-right">
+              <view>{{ "电话" + ":" + item.phone}}
+                <van-icon 
+                  bind:tap="phoneCall"  
+                  data-phone="{{item.phone}}"
+                  class="right-item" 
+                  name="phone"
+                  >
+                  </van-icon>
+              </view>  
+            </view>
+          </view>
+          <!-- end -->
+        </view>
+  </block>
+<!-- end -->
+<!-- 底部按钮-start -->
+    <view class="footers">
+       <vant-button class="footers-item" bind:tap="addSupp">新增供应商</vant-button> 
+    </view>
+<!-- end -->

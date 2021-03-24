@@ -1,0 +1,8 @@
+{
+  "navigationBarBackgroundColor": "#1898FA",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "总账",
+  "backgroundColor": "#888",
+  "backgroundTextStyle": "light",
+  "usingComponents": {}
+}

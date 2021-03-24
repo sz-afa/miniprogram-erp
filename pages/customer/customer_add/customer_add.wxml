@@ -1,0 +1,110 @@
+<!--pages/customer-add/customer_add.wxml-->
+<view class="containers">
+  <view class="cell cell-1">
+    <!-- 客户名称 -->
+    <van-field
+      value="{{ obj.name }}"
+      clearable="true"
+      placeholder=""
+      border="true"
+      required="true"
+      label="客户名称"
+      input-align="right"
+      bind:change="onChange"
+      data-idx="0"
+      custom-style="border-radius: 10px"
+    />
+    <!-- 客户类型 -->
+    <van-cell
+      title="客户类型"
+      is-link
+      custom-class="custom-class"
+      bind:click="onShowCIF"
+      value="{{typeSelectText}}"
+    >
+
+    </van-cell>
+  </view>
+  <view class="cell cell-2">
+    <view class="text-class">
+      <textarea 
+        class="textarea" 
+        bindblur="DataConvert" 
+        placeholder="快速输入信息。;隔开"
+        auto-height></textarea>
+    </view>
+    <!-- 分割线 -->
+    <view class="hrclass"></view>
+    <!-- 联系人 -->
+    <van-field 
+      value="{{ obj.liaison }}"
+      clearable="true"
+      placeholder=""
+      border="true"
+      required="true"
+      bind:change="onChange"
+      data-idx="1"
+      label="联系人"
+      input-align="right"
+      custom-style="border-radius: 10px;"
+    />
+    <!-- 分割线 -->
+    <view class="hrclass"></view>
+    <!-- 手机 -->
+    <van-field 
+      value="{{ obj.phone }}"
+      clearable="true"
+      placeholder=""
+      border="true"
+      bind:change="onChange"
+      data-idx="2"
+      required="true"
+      label="手机"
+      input-align="right"
+      custom-style="border-radius: 10px;"
+    />
+    <!-- 分割线 -->
+    <view class="hrclass"></view>
+
+    <!-- 分割线 -->
+    <view class="hrclass"></view>
+    <!-- 经营地址 -->
+    <van-field 
+      value="{{ obj.addr }}"
+      clearable="true"
+      placeholder=""
+      required="true"
+      label="经营地址"
+      bind:change="onChange"
+      data-idx="3"
+      input-align="right"
+      custom-style="border-radius: 10px;"
+    />
+  </view>
+  <view class="cell cell-3">
+    <van-field 
+      value="{{ obj.info }}"
+      clearable="true"
+      placeholder=""
+      required="true"
+      label="备注"
+      bind:change="onChange"
+      data-idx="4"
+      input-align="right"
+      custom-style="border-radius: 10px"
+    />
+  </view>
+</view>
+<view class="footer">
+  <view class="footer-button">
+    <van-button type="info" bindtap="submit">保存</van-button>
+    <van-button type="danger" bindtap="del" wx:if="{{isEdit}}">删除</van-button>
+  </view>
+</view>
+<van-action-sheet 
+        title="客户类型"
+        show="{{ showCIF }}"
+        actions="{{ customerInfo }}"
+        bind:select="onSelect"
+        bind:close="onClose"
+/>

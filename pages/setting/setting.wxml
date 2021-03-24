@@ -1,0 +1,44 @@
+<!--pages/setup/personalset.wxml-->
+<view class="containers">
+  <view class="header-class">
+    <view class="userphoto-class">
+      <image mode="center" class="userphoto" src="{{Object.avatarurl}}"></image>
+    </view>
+    <view class="usertext-class">
+      <view class="username">{{ Object.username }}</view>
+      <view class="userid"></view>
+      <view class="cifno">{{ Object.phone }}</view>
+      <view class="effective">{{ "注册时间" + ":" + Object.ctime }}</view>
+    </view>
+    
+  </view>
+  <view class="body-class">
+      <image src="../../img/body.png" class="body-item"></image>
+  </view>
+  <view class="footer-class">
+    <view class="userphone">
+      {{ "您的手机号码是" + ":" + Object.phone }}
+    </view>
+    <view class="footer-text">如果你当前手机号不再使用，请及时来这里更换手机号码</view>
+    <view class="button-class">
+      <van-button custom-class="phone-class" bindtap="changePhone">更换手机号码</van-button>
+    </view>
+  </view>
+</view>
+<van-popup show="{{popupShow}}" 
+  bind:close="popupClose" 
+  custom-style="padding:0 5vw;width:90vw;height:20vh;display:flex;flex-direction:column;justify-content: space-around;">
+  <van-cell-group>
+  <van-field
+    label="新手机号"
+    value="{{ newPhone }}"
+    placeholder="手机号"
+    border="{{ false }}"
+    bind:change="onChange"
+    type="number"
+    maxlength="11"
+  />
+</van-cell-group>
+<view class="view1"><van-button type="info" size="small" bindtap="submit">提交</van-button></view>
+
+</van-popup>
