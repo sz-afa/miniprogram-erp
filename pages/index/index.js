@@ -12,10 +12,11 @@ Page({
   },
   onLoad: function () {
 
-    wx.navigateTo({
+
+    wx.redirectTo({
       url: '../order/order?action=purchases'
     })
-    
+    return ;
 
     if (app.globalData.userInfo) {
       this.setData({

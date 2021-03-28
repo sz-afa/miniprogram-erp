@@ -121,8 +121,13 @@ Page({
     let {idx} = val.currentTarget.dataset
     console.log('idx : ',idx)
     if(idx == 0){
-      wx.redirectTo({
-        url: '../sale/saleForm/saleForm'
+      wx.navigateTo({
+        url: '../order/order?action=sale'
+      })
+    }
+    if(idx == 5){
+      wx.navigateTo({
+        url: '../order/order?action=purchases'
       })
     }
 

@@ -1,31 +1,82 @@
 <van-cell-group>
   <van-cell 
   title="选择日期" 
-  value="{{ obj.data }}" 
+  value="{{ obj.date }}" 
   is-link  
   bind:click="calendarDisplay" 
   icon="clock-o"/>
-  <van-cell title="客户" is-link />
+  <van-cell title="{{personTitle}}" is-link bind:click="sfdgj" />
 </van-cell-group>
 <van-divider />
 <van-cell-group>
   <view class="goodHead">
+    商品列表
     <view class="goodHead-left">
-      选择货品
     </view>
     <view class="goodHead-right">
-      总计金额
+      
     </view>
   </view>
+</van-cell-group>
+<van-cell-group>
   <view class="goodsView">
-  
-  </view>
-  <view class="goodFoot">
-    
+    <van-card
+      wx:if="{{!isSale}}"
+      wx:for="{{goods}}"
+      wx:for-index="idx" 
+      wx:key="idx"
+      num="{{goodcounts[idx]}}"
+      tag="{{}}"
+      price="{{item.prchsPrice}}"
+      desc="{{item.info}}"
+      title="{{item.name}}"
+      thumb="{{imgUrlPre}}{{item.img}}"
+    >
+      <view slot="footer">
+        <van-button size="mini" type="danger" bindtap="removeGood" data-idx="{{idx}}">删除</van-button>
+        <van-button size="mini" icon="minus" type="primary" bindtap="changeGoodCount" data-action="-1" data-idx="{{idx}}"></van-button>
+        <van-button size="mini" icon="plus" type="info"  bindtap="changeGoodCount" data-action="1" data-idx="{{idx}}"></van-button>
+      </view>
+    </van-card>
+
   </view>
 </van-cell-group>
+<van-cell-group>
+  <view class="goodFoot">
+    <van-icon name="scan" size="8vh" bind:click="scan" />
+    <van-icon name="add-o" size="8vh" bind:click="addGoodClick" />
+  </view>
+</van-cell-group>
+<van-divider />
+
+<van-cell-group>
+  <van-field
+    wx:if="{{isSale}}"
+    model:value="{{addr}}"
+    label="送货地址"
+    placeholder=""
+    clearable
+    border="{{ false }}"
+  />
+</van-cell-group>
+<van-submit-bar
+  price="{{ goodAllMoney*100 }}"
+  button-text="提交"
+  bind:submit="onSubmit"
+>
+商品数量:{{ goodAllCount }}个
+</van-submit-bar>
 <van-calendar 
   show="{{ calendarShow }}" 
   bind:close="calendarClose" 
   min-date="{{ minDate }}"
   bind:confirm="calendarConfirm" />
+
+  <van-action-sheet
+  show="{{ showPersionSheet }}"
+  actions="{{ persionActions }}"
+  cancel-text="取消"
+  bind:cancel="onPersionSheetClose"
+  bind:close="onPersionSheetClose"
+  bind:select="onPersionSheetSelect"
+/>

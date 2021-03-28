@@ -47,7 +47,8 @@
     "van-divider": "./dist/divider/index",
     "van-empty": "./dist/empty/index",
     "van-uploader": "./dist/uploader/index",
-    "van-calendar": "./dist/calendar/index"
+    "van-calendar": "./dist/calendar/index",
+    "van-submit-bar": "./dist/submit-bar/index"
   },
   "sitemapLocation": "sitemap.json"
 }
