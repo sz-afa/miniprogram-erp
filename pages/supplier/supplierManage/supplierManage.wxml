@@ -36,8 +36,8 @@
             <view class="footer-left">
                   <view>{{ "联系人" + ":" + item.liaison }}</view>
                   <view class="left-item">
-                    <view class="item1">{{ "应付欠款" + " : "  + index }}</view>
-                    <vant-button class="item2" bind:tap="aaa">付款</vant-button>
+                    <!-- <view class="item1">{{ "应付欠款" + " : "  + index }}</view>
+                    <vant-button class="item2" bind:tap="aaa">付款</vant-button> -->
                   </view>
             </view>
             <view class="footer-right">

@@ -1,16 +1,21 @@
 <!--pages/main/main.wxml-->
 <view class="blueBack">
-  <swiper indicator-dots='true'> 
-    <swiper-item>
-      <view class="swiper1">
-        
+  <swiper indicator-dots='true' current="{{swiperCurrent}}" >  
+    <swiper-item 
+      wx:for="{{siwperData}}"
+      wx:key="index" >
+      <view class="swiper1" >
+        <view class="left"><van-icon name="arrow-left" size="9vw" color="#19B5FE" bindtap="lastBtn" /></view>
+        <view class="content">
+          <view class="contenthalf">
+            <view>{{ item.title1 }}</view> <view>{{ item.value1 }}</view>
+          </view>
+          <view class="contenthalf">
+            <view>{{ item.title2 }}</view> <view>{{ item.value2 }}</view>
+          </view>
+        </view>
+        <view class="right"><van-icon name="arrow" size="9vw" color="#19B5FE" bindtap="nextBtn"  /></view>
       </view>
-    </swiper-item>
-    <swiper-item>
-      <view class="swiper2"></view>
-    </swiper-item>
-    <swiper-item>
-      <view class="swiper3"></view>
     </swiper-item>
   </swiper> 
 </view>

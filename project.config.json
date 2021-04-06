@@ -39,7 +39,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.13.2",
+  "libVersion": "2.16.0",
   "appid": "wx9a7a1f5afdf2a639",
   "projectname": "miniprogram-erp",
   "debugOptions": {

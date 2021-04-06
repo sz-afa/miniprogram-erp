@@ -1,0 +1,102 @@
+<van-submit-bar
+  price="{{ goodAllMoney*100 }}"
+  button-text="提交"
+  bind:submit="submit"
+>
+商品数量:{{ goodAllCount }}个
+</van-submit-bar>
+<van-notify id="van-notify" />
+<van-calendar 
+  show="{{ calendarShow }}" 
+  bind:close="calendarClose" 
+  min-date="{{ minDate }}"
+  bind:confirm="calendarConfirm" 
+  />
+
+<van-action-sheet
+  show="{{ showPersionSheet }}"
+  actions="{{ persionActions }}"
+  cancel-text="取消"
+  bind:cancel="sfdgj2"
+  bind:close="sfdgj2"
+  bind:select="onPersionSheetSelect"
+/>
+<van-action-sheet
+  show="{{ amountShow }}"
+  actions="{{ amountActions }}"
+  cancel-text="取消"
+  bind:cancel="onAmountClose"
+  bind:close="onAmountClose"
+  bind:select="onAmountSelect"
+/>
+<van-action-sheet
+  show="{{ goodSheetShow }}"
+  actions="{{ goodActions }}"
+  cancel-text="取消"
+  bind:cancel="ongoodClose"
+  bind:close="ongoodClose"
+  bind:select="ongoodSelect"
+/>
+
+<van-cell-group>
+  <van-cell 
+  title="选择日期" 
+  value="{{ date }}" 
+  is-link  
+  bind:click="calendarDisplay" 
+  icon="clock-o"/>
+  <van-cell title="顾客" value="{{persionActionsText}}" is-link bind:click="sfdgj" />
+  <van-cell title="收款方式" value="{{amountText}}" is-link bind:click="sfdgje" />
+</van-cell-group>
+
+<van-divider />
+<van-cell-group>
+  <view class="goodHead">
+    商品列表
+    <view class="goodHead-left">
+    </view>
+    <view class="goodHead-right">
+      
+    </view>
+  </view>
+</van-cell-group>
+<van-cell-group>
+  <view class="goodsView">
+    <van-card
+      wx:for="{{goods}}"
+      wx:key="index"
+      num="{{goodcounts[index]}}"
+      tag="{{isWholesale == false ? '零售' : '批发'}}"
+      price="{{item.showPrice}}"
+      desc="{{item.info}}"
+      title="{{item.name}}"
+      thumb="{{imgUrlPre}}{{item.img}}"
+    >
+      <view slot="footer">
+        <van-button size="mini" type="danger" bindtap="removeGood" data-idx="{{index}}">删除</van-button>
+        <van-button size="mini" icon="minus" type="primary" bindtap="changeGoodCount" data-action="-1" data-idx="{{index}}"></van-button>
+        <van-button size="mini" icon="plus" type="info"  bindtap="changeGoodCount" data-action="1" data-idx="{{index}}"></van-button>
+      </view>
+    </van-card>
+  </view>
+</van-cell-group>
+<van-cell-group>
+  <view class="goodFoot">
+    <van-icon name="scan" size="8vh" bind:click="scan" />
+    <van-icon name="add-o" size="8vh" bind:click="addGoodClick" />
+  </view>
+</van-cell-group>
+<van-divider />
+
+<van-cell-group>
+  <van-field
+    model:value="{{addr}}"
+    label="送货地址"
+    placeholder=""
+    clearable
+    border="{{ false }}"
+  />
+</van-cell-group>
+
+<view class="bottomEmpty" />
+

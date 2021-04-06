@@ -23,7 +23,6 @@
   background-color: white;
 }
 
-
 .bottomEmpty{
   width: 100vw;
   height: 50px;

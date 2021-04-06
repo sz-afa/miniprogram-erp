@@ -1,6 +1,6 @@
 // pages/order/order.js
 const app = getApp()
-
+import Notify from '../../dist/notify/notify';
 Page({
 
   /**
@@ -16,6 +16,8 @@ Page({
     persionActions: [
       { loading: true }
     ],
+    persionActionsSelect: {},
+    persionActionsText: '未选择',
     person: null,
     isSale: true,
     goods: [],
@@ -25,6 +27,31 @@ Page({
     obj: {
       date: '',
     },
+    amountShow: false,
+    amountText: '现金',
+    amountSelect: 1,
+    amountActions: [{
+      name: '现金',
+      subname: '默认',
+      value: 1
+    },{
+      name: '银行卡',
+      value: 3
+    },{
+      name: '微信',
+      value: 0
+    },{
+      name: '支付宝',
+      value: 2
+    }]
+
+  },
+  onPersionSheetSelect(val){
+    console.log(val.detail)
+    this.setData({
+      persionActionsSelect: val.detail,
+      persionActionsText: val.detail.name
+    })
   },
   onPersionSheetClose(){
     this.setData({
@@ -152,7 +179,39 @@ Page({
    */
   onShow: function () {
     var _this = this
-    
+    let _url = app.globalData.csUrl+'supplier/getSuppliers'
+    wx.request({
+      url: _url,
+      method: 'GET',
+      header: {
+          'token': app.globalData.jwtToken,
+      },
+      success: function(res){
+        if(res.data.code == 1){
+          console.log(res.data.data)
+          _this.setData({
+            persionActions: res.data.data
+          })
+        }
+      }
+    })
+
+    wx.request({
+      url: app.globalData.goodUrl+'good/getGoods',
+      method: 'GET',
+      header: {
+          'token': app.globalData.jwtToken,
+      },
+      success: function(res){
+        if(res.data.code == 1){
+          _this.setData({
+            goodActions: res.data.data
+          })
+        }
+
+      }
+    })
+
   },
 
   /**
@@ -189,10 +248,25 @@ Page({
   onShareAppMessage: function () {
 
   },
+  ongoodClose(){
+    this.setData({
+      goodSheetShow: false
+    })
+  },
   sfdgj(){
     this.setData({
       showPersionSheet: true
     })
+  },sfdgje(){this.setData({amountShow: true})},onAmountClose(){this.setData({amountShow: false})},
+  onAmountSelect(val){
+    console.log(val.detail.name)
+    this.setData({
+      amountText: val.detail.name,
+      amountSelect: val.detail.value
+    })
+  },
+  ongoodSelect(val){
+    this.addGood(val.detail)
   },
   getGoodInfoByCode(code){
     var _this = this
@@ -240,7 +314,48 @@ Page({
     this.goodAllCountFunc()
     this.goodAllMoneyFunc()
   },
+  addGoodClick(){
+    this.setData({
+      goodSheetShow: true
+    })
+  },
   submit(){
+    var _this = this
+    let _url = _url = app.globalData.orderUrl+'supplier/addSupplierOrder'
+    let _formData = {}
+    console.log('submit ', this.data)
+
+    _formData.amount = this.data.goodAllCount
+    _formData.total = this.data.goodAllMoney
+    _formData.supplier = this.data.persionActionsSelect
+    _formData.walletfield = this.data.amountSelect
+    _formData.date = Date.parse(Date(this.data.obj.date))
+    _formData.goods = this.data.goods;
+    this.data.goods.forEach(function(item, index, arr){
+      _formData.goods[index].amount = _this.data.goodcounts[index]
+    })
+
+    console.log(' submit  _formData :',_formData)
+
+    wx.request({
+      url: _url,
+      method: 'POST',
+      data: _formData,
+      header: {
+          'content-type': 'application/json',
+          'token': app.globalData.jwtToken,
+      },
+      success: function(res){
+        if(res.data.code == 1){
+          Notify({ type: 'success', message: '添加成功' })
+          setTimeout(()=>{
+            wx.navigateBack()
+          },1000)
+        }else{
+          Notify({ type: 'danger', message: res.data.msg || '服务器错误' })
+        }
+      }
+    })
 
   }
   

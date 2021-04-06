@@ -12,11 +12,10 @@ Page({
   },
   onLoad: function () {
 
-
     wx.redirectTo({
-      url: '../order/order?action=purchases'
-    })
-    return ;
+      url: '../statistics/sale/sale'
+  })
+  return;
 
     if (app.globalData.userInfo) {
       this.setData({
@@ -31,6 +30,7 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理

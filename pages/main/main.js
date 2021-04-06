@@ -1,4 +1,5 @@
-// pages/main/main.js
+const app = getApp()
+
 Page({
 
   /**
@@ -6,6 +7,23 @@ Page({
    */
   data: {
     popupShow: false,
+    swiperCurrent: 0,
+    siwperData: [{
+      title1: '今日利润',
+      value1: 0.00,
+      title2: '今日销售',
+      value2: 0.00
+    },{
+      title1: '昨日利润',
+      value1: 0.00,
+      title2: '昨日销售',
+      value2: 0.00
+    },{
+      title1: '本月利润',
+      value1: 0.00,
+      title2: '本月销售',
+      value2: 0.00
+    }],
     contentItem: [{
       'icon': 'shop-o',
       'text': '商品管理'
@@ -28,6 +46,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    let _i = 0;
+    for(; _i< 6 ; _i++){
+      this.getMainPageInfoReq(_i)
+    }
+
   },
 
   /**
@@ -71,8 +95,24 @@ Page({
   onReachBottom: function () {
 
   },
-
-
+  lastBtn(){
+    let _current = this.data.swiperCurrent
+    if(_current == 0){
+      return ;
+    }
+    this.setData({
+      swiperCurrent: _current-1
+    })
+  },
+  nextBtn(){
+    let _current = this.data.swiperCurrent
+    if(_current == this.data.siwperData.length - 1){
+      return ;
+    }
+    this.setData({
+      swiperCurrent: _current+1
+    })
+  },
   /**
    * 用户点击右上角分享
    */
@@ -98,7 +138,9 @@ Page({
         })
         break
       case 3:
-        console.log('dsfsddff')
+        wx.navigateTo({
+          url: '../statistics/sale/sale'
+        })
         break
       case 4:
         wx.navigateTo({
@@ -122,7 +164,7 @@ Page({
     console.log('idx : ',idx)
     if(idx == 0){
       wx.navigateTo({
-        url: '../order/order?action=sale'
+        url: '../order_sale/order_sale'
       })
     }
     if(idx == 5){
@@ -131,6 +173,66 @@ Page({
       })
     }
 
-  }
+  },
+  getMainPageInfoReq(index){
+    var _this = this
+    let _url = ''
+    let _siwperData = _this.data.siwperData 
+    switch(index){
+      case 0:
+        _url = app.globalData.financeUrl+'statistics/getTodayProfit'
+        break
+      case 1:
+        _url =  app.globalData.financeUrl+'statistics/getTodayTotal'
+        break
+      case 2:
+        _url =  app.globalData.financeUrl+'statistics/getYesterdayProfit'
+        break
+      case 3:
+        _url =  app.globalData.financeUrl+'statistics/getYesterdayTotal'
+        break
+      case 4:
+        _url =  app.globalData.financeUrl+'statistics/getThisMonthProfit'
+        break
+      case 5:
+        _url =  app.globalData.financeUrl+'statistics/getThisMonthTotal'
+        break
+    }
+    wx.request({
+      url: _url,
+      method: 'GET',
+      header: {
+          'token': app.globalData.jwtToken,
+      },
+      success: function(res){
+        if(res.data.code == 1){
+          console.log(res.data)
+          switch(index){
+            case 0:
+              _siwperData[0].value1 = res.data.data
+              break
+            case 1:
+              _siwperData[0].value2 = res.data.data
+              break
+            case 2:
+              _siwperData[1].value1 = res.data.data
+              break
+            case 3:
+              _siwperData[1].value2 = res.data.data
+              break
+            case 4:
+              _siwperData[2].value1 = res.data.data
+              break
+            case 5:
+              _siwperData[2].value2 = res.data.data
+              break
+          }
+          _this.setData({
+            siwperData: _siwperData
+          })
+        }
+      }
+    })
   
+  }
 })

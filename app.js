@@ -16,6 +16,7 @@ App({
     this.globalData.goodUrl = this.globalData.globalUrl+'miniprogram-good-service/'+this.globalData.apiVersion
     this.globalData.financeUrl = this.globalData.globalUrl+'miniprogram-finance-service/'+this.globalData.apiVersion
     this.globalData.csUrl = this.globalData.globalUrl+'miniprogram-cs-service/'+this.globalData.apiVersion
+    this.globalData.orderUrl = this.globalData.globalUrl+'miniprogram-order-service/'+this.globalData.apiVersion
   },
   globalData: {
     userInfo: null,

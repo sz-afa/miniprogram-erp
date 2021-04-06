@@ -1,0 +1,17 @@
+
+<van-popup
+  show="{{ dateshow }}"
+  position="bottom"
+  custom-style="height: 50%;"
+  bind:close="dateShowClose"
+>
+  <van-datetime-picker
+    type="date"
+    value="{{ currentDate }}"
+    bind:input="onInputDate"
+    bind:confirm="dateConfirm"
+    bind:cancel="dateShowClose"
+  />
+</van-popup>
+
+<van-button type="default" bindtap="dateShowOpen1">默认按钮</van-button>

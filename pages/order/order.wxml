@@ -1,3 +1,4 @@
+<van-notify id="van-notify" />
 <van-cell-group>
   <van-cell 
   title="选择日期" 
@@ -5,7 +6,8 @@
   is-link  
   bind:click="calendarDisplay" 
   icon="clock-o"/>
-  <van-cell title="{{personTitle}}" is-link bind:click="sfdgj" />
+  <van-cell title="{{personTitle}}" value="{{persionActionsText}}" is-link bind:click="sfdgj" />
+  <van-cell title="付款账户" value="{{amountText}}" is-link bind:click="sfdgje" />
 </van-cell-group>
 <van-divider />
 <van-cell-group>
@@ -62,17 +64,19 @@
 <van-submit-bar
   price="{{ goodAllMoney*100 }}"
   button-text="提交"
-  bind:submit="onSubmit"
+  bind:submit="submit"
 >
 商品数量:{{ goodAllCount }}个
 </van-submit-bar>
+
 <van-calendar 
   show="{{ calendarShow }}" 
   bind:close="calendarClose" 
   min-date="{{ minDate }}"
-  bind:confirm="calendarConfirm" />
+  bind:confirm="calendarConfirm" 
+  />
 
-  <van-action-sheet
+<van-action-sheet
   show="{{ showPersionSheet }}"
   actions="{{ persionActions }}"
   cancel-text="取消"
@@ -80,3 +84,22 @@
   bind:close="onPersionSheetClose"
   bind:select="onPersionSheetSelect"
 />
+
+<van-action-sheet
+  show="{{ amountShow }}"
+  actions="{{ amountActions }}"
+  cancel-text="取消"
+  bind:cancel="onAmountClose"
+  bind:close="onAmountClose"
+  bind:select="onAmountSelect"
+/>
+
+<van-action-sheet
+  show="{{ goodSheetShow }}"
+  actions="{{ goodActions }}"
+  cancel-text="取消"
+  bind:cancel="ongoodClose"
+  bind:close="ongoodClose"
+  bind:select="ongoodSelect"
+/>
+<view class="bottomEmpty" />
