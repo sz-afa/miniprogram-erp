@@ -99,6 +99,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let {action=0, val} = options
+    if(action == 1){
+      let _person = {}
+      _person.detail = JSON.parse(val)
+      this.onPersionSheetSelect(_person)
+    }
+
     var _this = this
     let timestamp  = (new Date()).valueOf()
     timestamp -= 3600 * 1000 * 24 * 60

@@ -166,5 +166,12 @@ Page({
     wx.navigateTo({
       url: '../customer_add/customer_add?action=edit&data='+JSON.stringify(_customer)
     })
+  },
+  sale(val){
+    let {item} = val.currentTarget.dataset
+    console.log(item)
+    wx.navigateTo({
+      url: '../../order_sale/order_sale?action=1&val=' + JSON.stringify(item)
+  })
   }
 })

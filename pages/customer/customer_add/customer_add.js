@@ -122,9 +122,9 @@ Page({
   },
   onClose(){
     console.log('close')
-    // this.setData({
-    //   showCIF: false
-    // })
+    this.setData({
+      showCIF: false
+    })
   },
   DataConvert(val){
     console.log(val)

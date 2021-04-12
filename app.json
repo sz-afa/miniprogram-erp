@@ -15,7 +15,9 @@
     "pages/customer/customer_add/customer_add",
     "pages/order/order",
     "pages/order_sale/order_sale",
-    "pages/statistics/sale/sale"
+    "pages/statistics/sale/sale",
+    "pages/chart/chart1/chart1",
+    "pages/statistics/orderDetail/orderDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -50,7 +52,9 @@
     "van-uploader": "./dist/uploader/index",
     "van-calendar": "./dist/calendar/index",
     "van-submit-bar": "./dist/submit-bar/index",
-    "van-datetime-picker": "./dist/datetime-picker/index"
+    "van-datetime-picker": "./dist/datetime-picker/index",
+    "van-tab": "./dist/tab/index",
+    "van-tabs": "./dist/tabs/index"
   },
   "sitemapLocation": "sitemap.json"
 }

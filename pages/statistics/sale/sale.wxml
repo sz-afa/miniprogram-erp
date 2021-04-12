@@ -1,4 +1,5 @@
 
+<van-notify id="van-notify" />
 <van-popup
   show="{{ dateshow }}"
   position="bottom"
@@ -14,4 +15,50 @@
   />
 </van-popup>
 
-<van-button type="default" bindtap="dateShowOpen1">默认按钮</van-button>
+<van-cell-group title="">
+  <van-tabs active="{{ active }}" bind:change="onChange" >
+    <van-tab title="今日" />
+    <van-tab title="本月" />
+    <van-tab title="本年" />
+</van-tabs>
+    <van-cell title="开始日期" value="{{startDate.timeShow}}" is-link bindtap="dateShowOpen1"  icon="underway-o" >
+    </van-cell>
+    <van-cell title="结束日期" value="{{endDate.timeShow}}" is-link bindtap="dateShowOpen2" icon="underway-o">
+    </van-cell>
+</van-cell-group>
+<van-grid column-num="3" >
+  <van-grid-item use-slot  >
+    <view style="color: #07C160;">{{sum.count}}</view> 
+    <view style="color: #A8A8A8;">销售总笔数</view>
+  </van-grid-item>
+  <van-grid-item use-slot  >
+    <view style="color: #07C160;">{{sum.sale}}</view> 
+    <view style="color: #A8A8A8;">销售总金额</view>
+  </van-grid-item>  <van-grid-item use-slot  >
+    <view style="color: #07C160;">{{sum.profit}}</view> 
+    <view style="color: #A8A8A8;">利润总金额</view>
+  </van-grid-item>
+</van-grid>
+<van-divider />
+<van-grid column-num="4" >
+  <van-grid-item use-slot >序号</van-grid-item>
+  <van-grid-item use-slot >金额</van-grid-item>
+  <van-grid-item use-slot >利润</van-grid-item>
+  <van-grid-item use-slot >时间</van-grid-item>
+</van-grid>
+<van-grid column-num="4" wx:for="{{orders}}" wx:key="index" clickable="{{true}}">
+  <van-grid-item use-slot bindtap="itemClick" data-item="{{item}}">  
+    <van-tag type="primary">{{index+1}}</van-tag> 
+  </van-grid-item>
+  <van-grid-item use-slot  bindtap="itemClick" data-item="{{item}}">  
+    {{item.total}}
+  </van-grid-item>
+  <van-grid-item use-slot bindtap="itemClick" data-item="{{item}}">  
+    {{item.total - item.costprice}}
+  </van-grid-item>
+  <van-grid-item use-slot style="font-size: 0.98em;" bindtap="itemClick" data-item="{{item}}">  
+    {{item.time}}
+  </van-grid-item>
+  
+</van-grid>
+<van-divider />

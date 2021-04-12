@@ -30,7 +30,7 @@
 </view>
 <!-- 卡片信息-start -->
   <block wx:for="{{ objs }}" wx:key="index">
-        <view class="container" bindtap="edit" data-idx="{{index}}">
+        <view class="container" >
           <!-- 卡片上部分信息-start -->
             <view class="headclass">
                   <!-- 左边的部分 -->
@@ -39,7 +39,7 @@
                   </view>
                   <!-- 右边的部分 -->
                   <view class="headright">
-                    <vant-button class="headright-item" bind:tap="#">出货</vant-button>
+                    <vant-button class="headright-item" bind:tap="sale" data-item="{{item}}">出货</vant-button>
                   </view>
             </view>
           <!-- end -->
@@ -49,12 +49,12 @@
             <!-- end -->
 
           <!-- 卡片下部分信息-start -->
-          <view class="footer">
+          <view class="footer" bind:tap="edit" data-idx="{{index}}">
             <view class="footer-left">
                   <view>{{ "联系人" + ":" + item.liaison }}</view>
                   <view class="left-item">
-                    <view class="item1">{{ "应付欠款" + " : "  + item.value2.value }}</view>
-                    <vant-button class="item2" bind:tap="getMoney">收款</vant-button>
+                    <!-- <view class="item1">{{ "应付欠款" + " : "  + item.value2.value }}</view>
+                    <vant-button class="item2" bind:tap="getMoney">收款</vant-button> -->
                   </view>
             </view>
             <view class="footer-right">

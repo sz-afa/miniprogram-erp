@@ -1,0 +1,19 @@
+<van-panel title="{{orderInfo.customer.name}}" desc="{{orderInfo.addr}}" status="支付方式:{{fields[orderInfo.walletfield]}}">
+  <van-card 
+    wx:for="{{orderInfo.goods}}"
+    wx:key="index"
+    wx:for-index="idx" 
+    num="{{item.amount}}" tag="{{item.typeText}}" price="{{item.prchsPrice}}" 
+    desc="备注:{{item.info}}" 
+    title="{{item.code}}\t\t{{item.name}}" 
+    thumb="{{imgUrlPre}}{{item.img}}"
+    thumb-mode="contain" >
+    <view slot="price-top" style="color: red;">采购价</view>
+    <view slot="footer">
+    </view>
+    <view slot="bottom" style="color: #1989FA">零售价{{item.salePrice}}\t批发价{{item.whlslPrice}}</view>
+  </van-card>
+</van-panel>
+
+
+<van-divider contentPosition="center">没有更多了</van-divider>
