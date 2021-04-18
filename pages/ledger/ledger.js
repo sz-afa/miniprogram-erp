@@ -43,29 +43,7 @@ Page({
       mask: true,
       duration: 10
     });
-    var _this = this
-    wx.request({
-      url: app.globalData.financeUrl+'finance/getWallet',
-      method: 'GET',
-      header: {
-          'token': app.globalData.jwtToken,
-      },
-      success: function(res){
-        if(res.data.code == 1){
-          let data = res.data.data
-          let _count = data.alipay + data.wechat + data.bank + data.cash
-          console.log('wallet',data)
-          setTimeout(()=>{
-            Toast.success('加载成功')
-          },500)
-          _this.setData({
-            obj: data,
-            count: _count.toFixed(2)
-          })
-        }
-      }
-    })
-  
+    this.getDataReq()
   },
 
   /**
@@ -101,5 +79,41 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getDataReq(){
+    let _this = this
+    wx.request({
+      url: app.globalData.financeUrl+'finance/getWallet',
+      method: 'GET',
+      header: {
+          'token': app.globalData.jwtToken,
+      },
+      success: function(res){
+        if(res.data.code == 1){
+          let data = res.data.data
+          let _count = data.alipay + data.wechat + data.bank + data.cash
+          console.log('wallet',data)
+          setTimeout(()=>{
+            Toast.success('加载成功')
+          },500)
+          _this.setData({
+            obj: data,
+            count: _count.toFixed(2)
+          })
+        }else{
+          setTimeout(()=>{
+          Toast.fail('服务器错误')
+          }, 1000)
+          setTimeout(()=>{
+            _this.getDataReq()
+          },10*1000)
+        }
+      },
+      fail: function(res){
+        console.log('fail')
+        console.log(res)
+      }
+    })
+  
   }
 })

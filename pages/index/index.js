@@ -13,13 +13,13 @@ Page({
   onLoad: function () {
 
 
-//     wx.redirectTo({
-//       url: '../statistics/sale/sale'
-//   })
+  //   wx.redirectTo({
+  //     url: '../statistics/sale/sale'
+  // })
 //   wx.redirectTo({
 //     url: '../chart/chart1/chart1'
 // })
-//   return;
+  // return;
 
     if (app.globalData.userInfo) {
       this.setData({

@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "主页",
+  "navigationBarBackgroundColor": "#1898FA",
   "usingComponents": {
     "myTabbar": "../myTabbar/myTabbar",
     "van-icon": "../../dist/icon/index"

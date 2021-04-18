@@ -5,16 +5,16 @@
       wx:for="{{siwperData}}"
       wx:key="index" >
       <view class="swiper1" >
-        <view class="left"><van-icon name="arrow-left" size="9vw" color="#19B5FE" bindtap="lastBtn" /></view>
+        <view class="left"><van-icon name="arrow-left" size="9vw" color="#F7F8FA" bindtap="lastBtn" /></view>
         <view class="content">
-          <view class="contenthalf">
+          <view class="contenthalf van-hairline--right" >
             <view>{{ item.title1 }}</view> <view>{{ item.value1 }}</view>
           </view>
           <view class="contenthalf">
             <view>{{ item.title2 }}</view> <view>{{ item.value2 }}</view>
           </view>
         </view>
-        <view class="right"><van-icon name="arrow" size="9vw" color="#19B5FE" bindtap="nextBtn"  /></view>
+        <view class="right"><van-icon name="arrow" size="9vw" color="#F7F8FA" bindtap="nextBtn"  /></view>
       </view>
     </swiper-item>
   </swiper> 
@@ -40,12 +40,12 @@
     <view class="popContent-item"><van-icon name="shop-o" />销售开单</view>
     <view class="popContent-item2" >
       <van-button round  plain type="info" bindtap="btnClick" data-idx="0">出货</van-button>
-      <van-button round  plain type="info">收款</van-button>
+      <!-- <van-button round  plain type="info">收款</van-button> -->
     </view>
     <view class="popContent-item"><van-icon name="shop-o" />采购开单</view>
     <view class="popContent-item2">
       <van-button round  plain type="info" bindtap="btnClick" data-idx="5">进货</van-button>
-      <van-button round  plain type="info">付款</van-button>
+      <!-- <van-button round  plain type="info">付款</van-button> -->
     </view>
   </view>
 </van-popup>

@@ -16,7 +16,6 @@
     "pages/order/order",
     "pages/order_sale/order_sale",
     "pages/statistics/sale/sale",
-    "pages/chart/chart1/chart1",
     "pages/statistics/orderDetail/orderDetail"
   ],
   "window": {
@@ -54,7 +53,9 @@
     "van-submit-bar": "./dist/submit-bar/index",
     "van-datetime-picker": "./dist/datetime-picker/index",
     "van-tab": "./dist/tab/index",
-    "van-tabs": "./dist/tabs/index"
+    "van-tabs": "./dist/tabs/index",
+    "van-transition": "./dist/transition/index",
+    "van-loading": "./dist/loading/index"
   },
   "sitemapLocation": "sitemap.json"
 }

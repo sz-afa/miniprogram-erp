@@ -1,7 +1,7 @@
 {
   "navigationBarBackgroundColor": "#1898FA",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "新增客户",
+  "navigationBarTitleText": "编辑客户",
   "backgroundColor": "#888",
   "backgroundTextStyle": "light",
   "usingComponents": {}

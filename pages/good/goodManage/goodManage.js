@@ -40,46 +40,6 @@ Page({
     })
     console.log('显示了 --用户设置:',_setting)
 
-    var _this = this
-    Toast.loading({
-      message: '加载中...',
-      forbidClick: true,
-      duration: 0,
-      loadingType: 'spinner',
-      mask: true
-    })
-    wx.request({
-      url: app.globalData.goodUrl+'good/getAllGoodType',
-      method: 'GET',
-      header: {
-          'content-type': 'application/json',
-          'token': app.globalData.jwtToken,
-      },
-      success: function(res){
-        let arry = []
-        if(res.statusCode == 200){
-          let data = res.data.data
-          for(let val of data){
-            let {id,type} = val
-            arry.push({
-              text: type,
-              value: id
-            })
-          }
-          arry = _this.data.defaultOpt.concat(arry)
-          _this.setData({
-            option1: arry,
-            typeVal: -1
-          })
-          _this.getGoodReq()
-          setTimeout(()=>{
-            Toast.clear()
-          },500)
-        }
-
-      }
-    })
-
 
   },
 
@@ -95,7 +55,14 @@ Page({
    */
   onShow: function () {
     console.log('onShow')
-
+    Toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+      duration: 0,
+      loadingType: 'spinner',
+      mask: true
+    })
+    this.getTypesReq()
   },
 
   /**
@@ -185,8 +152,48 @@ Page({
       })
     }
   },
+  getTypesReq: function(){
+    let _this = this
+    wx.request({
+      url: app.globalData.goodUrl+'good/getAllGoodType',
+      method: 'GET',
+      header: {
+          'content-type': 'application/json',
+          'token': app.globalData.jwtToken,
+      },
+      success: function(res){
+        let arry = []
+        if(res.statusCode == 200){
+          let data = res.data.data
+          for(let val of data){
+            let {id,type} = val
+            arry.push({
+              text: type,
+              value: id
+            })
+          }
+          arry = _this.data.defaultOpt.concat(arry)
+          _this.setData({
+            option1: arry,
+            typeVal: -1
+          })
+          _this.getGoodReq()
+          setTimeout(()=>{
+            Toast.clear()
+          },500)
+        }else{
+          console.log('请求失败')
+          setTimeout(()=>{
+            _this.getTypesReq()
+          },10*1000)
+        }
+
+      }
+    })
+
+  },
   getGoodReq: function(){
-    var _this = this
+    let _this = this
 
     wx.request({
       url: app.globalData.goodUrl+'good/getGoods',
@@ -203,8 +210,11 @@ Page({
           _this.setData({
             showGoodsData: _this.data.goodsData
           })
+        }else{
+          setTimeout(()=>{
+            _this.getGoodReq()
+          }, 10*1000)
         }
-        console.log(_this.data.goodsData)
         if(_this.data.showGoodsData.length > 0){
           _this.setData({
             haveGood: true

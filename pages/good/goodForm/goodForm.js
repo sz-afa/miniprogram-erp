@@ -295,6 +295,8 @@ Page({
       success: function(res){
         if(res.data.code == 1){
           console.log(successMsg)
+          Notify({ type: 'success', message: successMsg });
+          wx.navigateBack()
         }
       }
     })

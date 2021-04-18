@@ -8,6 +8,8 @@ Page({
    */
 
   data: {
+    reqSelect: 0,
+    showChart: false,
     active: 0,
     isStartTime: true,
     dateshow: false,
@@ -94,6 +96,19 @@ Page({
    */
   onReady: function () {
 
+  },
+  onCloseChartPopup(){
+    this.setData({
+      showChart: false
+    })
+  },
+  showChartPopup(val){
+    this.setData({
+      reqSelect: val.currentTarget.dataset.reqselect
+    })
+    this.setData({
+      showChart: true
+    })
   },
   dateConfirm(){
     let _currentDate = this.data.currentDate
@@ -248,6 +263,6 @@ Page({
     let jsonstr = JSON.stringify(item)
     wx.navigateTo({
       url: '../orderDetail/orderDetail?item='+jsonstr
-  })
+    })
   }
 })

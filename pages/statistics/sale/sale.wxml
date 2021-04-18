@@ -44,7 +44,7 @@
   <van-grid-item use-slot >序号</van-grid-item>
   <van-grid-item use-slot >金额</van-grid-item>
   <van-grid-item use-slot >利润</van-grid-item>
-  <van-grid-item use-slot >时间</van-grid-item>
+  <van-grid-item use-slot >数量</van-grid-item>
 </van-grid>
 <van-grid column-num="4" wx:for="{{orders}}" wx:key="index" clickable="{{true}}">
   <van-grid-item use-slot bindtap="itemClick" data-item="{{item}}">  
@@ -56,9 +56,24 @@
   <van-grid-item use-slot bindtap="itemClick" data-item="{{item}}">  
     {{item.total - item.costprice}}
   </van-grid-item>
-  <van-grid-item use-slot style="font-size: 0.98em;" bindtap="itemClick" data-item="{{item}}">  
-    {{item.time}}
+  <van-grid-item use-slot  bindtap="itemClick" data-item="{{item}}">  
+    {{item.amount}}
   </van-grid-item>
   
 </van-grid>
-<van-divider />
+<van-divider contentPosition="center">没有更多了</van-divider>
+
+<!-- <van-cell title="展示弹出层" is-link bind:click="showChartPopup" /> -->
+<van-popup show="{{ showChart }}" bind:close="onCloseChartPopup" 
+  custom-style=" width:84vw; height: 66vh; margin: 0;" >
+  </van-popup>
+<chartOne wx:if="{{showChart}}" reqSelect="{{reqSelect}}" ></chartOne>
+
+<van-row>
+  <van-col span="6" offset="4" >
+    <van-button type="primary" bind:click="showChartPopup" data-reqselect="0">月销售图</van-button>
+  </van-col>
+  <van-col span="6" offset="4" >
+    <van-button type="info" bind:click="showChartPopup" data-reqselect="1" >周销售图</van-button>
+  </van-col>
+</van-row>

@@ -20,6 +20,7 @@
   <van-card 
     wx:for="{{showGoodsData}}"
     wx:for-index="idx" 
+    wx:key="index"
     num="{{item.stock}}" tag="{{item.typeText}}" price="{{item.prchsPrice}}" 
     desc="备注:{{item.info}}" 
     title="{{item.code}}\t\t{{item.name}}" 

@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "van-tag": "../../../dist/tag/index"
+    "van-tag": "../../../dist/tag/index",
+    "chartOne": "../../chart/charComponet1/charComponet1"
   }
 }

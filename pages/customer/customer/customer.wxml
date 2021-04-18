@@ -1,5 +1,5 @@
 <!--pages/customer/customer.wxml-->
-<view class="headers">
+<!-- <view class="headers">
   <van-cell
     title="客户"
     is-link
@@ -27,7 +27,7 @@
           欠款<van-icon name="{{ downanup }}" size="0.8rem" custom-style="{{ dwonanupflg ?'position:relative;top: 0.15rem;font-weight: 600;padding-right: 2px;transform:rotateZ(180deg)':'position:relative;top: 0.15rem;font-weight: 600;padding-right: 2px' }}"/>
       </view>
     </van-search>
-</view>
+</view> -->
 <!-- 卡片信息-start -->
   <block wx:for="{{ objs }}" wx:key="index">
         <view class="container" >

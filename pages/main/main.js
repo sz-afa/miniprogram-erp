@@ -47,11 +47,6 @@ Page({
    */
   onLoad: function (options) {
 
-    let _i = 0;
-    for(; _i< 6 ; _i++){
-      this.getMainPageInfoReq(_i)
-    }
-
   },
 
   /**
@@ -65,7 +60,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let _i = 0;
+    for(; _i< 6 ; _i++){
+      this.getMainPageInfoReq(_i)
+    }
   },
 
   /**

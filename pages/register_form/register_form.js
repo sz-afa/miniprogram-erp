@@ -158,6 +158,7 @@ Page({
     }
   },
   submit: function(){
+    let _this = this
     console.log("提交")
     wx.request({
       url: app.globalData.userUrl+'user/addPhone',
@@ -174,10 +175,11 @@ Page({
         console.log(res.data)
         if(res.data.code == 1)
         {
+          app.globalData.jwtToken = _this.data.token
           Toast.success('绑定成功!');
           setTimeout(()=>{
             wx.redirectTo({
-              url: '../main/main'
+              url: '../index/index'
             })
           },500)
         }else  if(res.data.code == -1){
